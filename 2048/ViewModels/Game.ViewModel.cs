@@ -16,7 +16,9 @@ namespace _2048.ViewModels
 
         public GameView View { get; set; }
         public GameBoardViewModel GameBoard { get; set; }
-        
+        public string Score { get; set; }
+        public string BestScore { get; set; }
+
         #endregion
         #region Commands
 
@@ -29,6 +31,9 @@ namespace _2048.ViewModels
         {
             this.main_page = main_page;
             GameBoard = new GameBoardViewModel(this);
+
+            Score = "0";
+            BestScore = "0";
 
             GoToMainPage = new RelayCommand(() => this.main_page.goToMainPage());
 
