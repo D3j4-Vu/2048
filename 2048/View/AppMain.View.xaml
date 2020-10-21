@@ -9,7 +9,6 @@
              d:DesignHeight = "1280" d:DesignWidth = "720"
 >
 
-
     <Border Padding="30" Background="{StaticResource BackgroundLightBrush}">
 
         <Grid>
@@ -31,14 +30,13 @@
 
             <TextBlock Grid.Row="0" Grid.ColumnSpan="3" Text="2048" FontSize="300" Style="{StaticResource WarmTextBlock}"/>
 
-            <Button Grid.Row="2" Grid.Column="1" Style="{StaticResource RoundedYellow}" Content="Start game" Command="{Binding StartGame}"/>
+            <Button Grid.Row="2" Grid.Column="1" Style="{StaticResource BtnRoundedYellow}" Content="Start game" Command="{Binding StartGame}"/>
 
-            <Button Grid.Row="4" Grid.Column="1" Style="{StaticResource RoundedRed}" Content="Exit game" Command="{Binding CloseCommand}"/>
+            <Button Grid.Row="4" Grid.Column="1" Style="{StaticResource BtnRoundedRed}" Content="Exit game" Command="{Binding CloseCommand}"/>
 
             <ContentControl Grid.ColumnSpan="3" Grid.RowSpan="6" Visibility="{Binding contentVisibility}" Content="{Binding GameVM.View}"/>
 
         </Grid>
     </Border>
-    
 </UserControl>
 

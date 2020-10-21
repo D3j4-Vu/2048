@@ -7,21 +7,24 @@
         <ResourceDictionary Source="Fonts.xaml" />
     </ResourceDictionary.MergedDictionaries>
 
-    <Style TargetType="{x:Type Button}" x:Key="Hoverless" BasedOn="{StaticResource BaseStyle}">
+
+    <Style TargetType="{x:Type Button}" x:Key="BtnHoverless" BasedOn="{StaticResource BaseStyle}">
         <Setter Property="Background" Value="Transparent" />
         <Setter Property="BorderThickness" Value="0" />
 
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Button}">
-                    <ContentPresenter Content="{TemplateBinding Content}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    <Viewbox>
+                        <ContentPresenter Content="{TemplateBinding Content}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Viewbox>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
 
     </Style>
 
-    <Style TargetType="{x:Type Button}" x:Key="Rounded" BasedOn="{StaticResource Hoverless}">
+    <Style TargetType="{x:Type Button}" x:Key="BtnRounded" BasedOn="{StaticResource BtnHoverless}">
         <Setter Property="WindowChrome.IsHitTestVisibleInChrome" Value="True" />
         <Setter Property="Background" Value="Transparent" />
         <Setter Property="VerticalAlignment" Value="Stretch" />
@@ -39,37 +42,43 @@
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
-        
-    </Style>
-
-    <Style TargetType="{x:Type Button}" x:Key="RoundedRed" BasedOn="{StaticResource Rounded}">
-        <Setter Property="Background" Value="{StaticResource ButtonRed}"/>
 
         <Style.Triggers>
             <Trigger Property="IsMouseOver" Value="True">
-                <Setter Property="Background" Value="{StaticResource ButtonStainedRed}" />
+                <Setter Property="Margin" Value="-10,-10,-10,-10"/>
             </Trigger>
         </Style.Triggers>
 
     </Style>
 
-    <Style TargetType="{x:Type Button}" x:Key="RoundedYellow" BasedOn="{StaticResource Rounded}">
-        <Setter Property="Background" Value="{StaticResource ButtonYellow}"/>
+    <Style TargetType="{x:Type Button}" x:Key="BtnRoundedRed" BasedOn="{StaticResource BtnRounded}">
+        <Setter Property="Background" Value="{StaticResource Red}"/>
 
         <Style.Triggers>
             <Trigger Property="IsMouseOver" Value="True">
-                <Setter Property="Background" Value="{StaticResource ButtonStainedYellow}" />
+                <Setter Property="Background" Value="{StaticResource StainedRed}" />
             </Trigger>
         </Style.Triggers>
 
     </Style>
 
-    <Style TargetType="{x:Type Button}" x:Key="RoundedGrey" BasedOn="{StaticResource Rounded}">
-        <Setter Property="Background" Value="{StaticResource ButtonGrey}"/>
+    <Style TargetType="{x:Type Button}" x:Key="BtnRoundedYellow" BasedOn="{StaticResource BtnRounded}">
+        <Setter Property="Background" Value="{StaticResource Yellow}"/>
 
         <Style.Triggers>
             <Trigger Property="IsMouseOver" Value="True">
-                <Setter Property="Background" Value="{StaticResource ButtonStainedGrey}" />
+                <Setter Property="Background" Value="{StaticResource StainedYellow}" />
+            </Trigger>
+        </Style.Triggers>
+
+    </Style>
+
+    <Style TargetType="{x:Type Button}" x:Key="BtnRoundedGrey" BasedOn="{StaticResource BtnRounded}">
+        <Setter Property="Background" Value="{StaticResource Grey}"/>
+
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background" Value="{StaticResource StainedGrey}" />
             </Trigger>
         </Style.Triggers>
 

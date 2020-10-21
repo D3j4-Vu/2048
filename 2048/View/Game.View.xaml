@@ -20,7 +20,7 @@
         </Grid.ColumnDefinitions>
 
         <Viewbox Grid.Row="0" Grid.Column="0" Margin="20">
-            <Button Style="{StaticResource RoundedGrey}" Width="100" Height="100" Padding="10" Command="{Binding GoToMainPage}">
+            <Button Style="{StaticResource BtnRoundedGrey}" Width="100" Height="100" Padding="10" Command="{Binding GoToMainPage}">
                 <Image Source="../Resources/Images/Home_icon.png"/>
             </Button>
         </Viewbox>
@@ -31,9 +31,9 @@
                     <RowDefinition Height="1.2*"/>
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
-                
-                <Button Style="{StaticResource Rounded}" Background="{StaticResource ButtonStainedDarkGrey}"/>
-                <Button Grid.Row="1" Style="{StaticResource RoundedRed}" Margin="0,5,0,0" Content="NEW"/>
+
+                <Button Style="{StaticResource BtnRounded}" Background="{StaticResource StainedDarkGrey}" Margin="0,0,0,0"/>
+                <Button Grid.Row="1" Style="{StaticResource BtnRoundedRed}" Margin="0,5,0,0" Content="NEW"/>
             </Grid>
         </Viewbox>
 
@@ -44,15 +44,13 @@
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
 
-                <Button Style="{StaticResource Rounded}" Background="{StaticResource ButtonStainedDarkGrey}"/>
-                <Button Grid.Row="1" Style="{StaticResource RoundedRed}" Margin="0,5,0,0" Content="UNDO"/>
+                <Button Style="{StaticResource BtnRounded}" Background="{StaticResource StainedDarkGrey}" Margin="0,0,0,0"/>
+                <Button Grid.Row="1" Style="{StaticResource BtnRoundedRed}" Margin="0,5,0,0" Content="UNDO"/>
             </Grid>
         </Viewbox>
 
-        <Viewbox Grid.Row="1" Grid.ColumnSpan="3">
-            <Border  Width="500" Height="500" Padding="10">
-                <ContentControl/>
-            </Border>
+        <Viewbox Stretch="Uniform" Grid.Row="1" Grid.ColumnSpan="3">
+                <ContentControl Content="{Binding GameBoard.View}"/>
         </Viewbox>
 
     </Grid>

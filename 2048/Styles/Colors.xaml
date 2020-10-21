@@ -4,21 +4,21 @@
     
     <SolidColorBrush x:Key="BackgroundLightBrush" Color="#FFFFFBEA" />
     
-    <SolidColorBrush x:Key="ButtonRed" Color="#FFEE4141"/>
-    <SolidColorBrush x:Key="ButtonStainedRed" Color="#FF9F4242"/>
+    <SolidColorBrush x:Key="Red" Color="#FFEE4141"/>
+    <SolidColorBrush x:Key="StainedRed" Color="#FF9F4242"/>
 
-    <SolidColorBrush x:Key="ButtonYellow" Color="#FFFFD325"/>
-    <SolidColorBrush x:Key="ButtonStainedYellow" Color="#FFE1D548"/>
+    <SolidColorBrush x:Key="Yellow" Color="#FFFFD325"/>
+    <SolidColorBrush x:Key="StainedYellow" Color="#FFE1D548"/>
     
-    <SolidColorBrush x:Key="ButtonBlue" Color="#FF347DFF"/>
-    <SolidColorBrush x:Key="ButtonStainedBlue" Color="#FF4A6DA9"/>
+    <SolidColorBrush x:Key="Blue" Color="#FF347DFF"/>
+    <SolidColorBrush x:Key="StainedBlue" Color="#FF4A6DA9"/>
 
-    <SolidColorBrush x:Key="ButtonGrey" Color="#FF827B76"/>
-    <SolidColorBrush x:Key="ButtonStainedGrey" Color="#FF747372"/>
+    <SolidColorBrush x:Key="Grey" Color="#FF827B76"/>
+    <SolidColorBrush x:Key="StainedGrey" Color="#FF747372"/>
 
-    <SolidColorBrush x:Key="ButtonWarmGrey" Color="#FF856F60"/>
-    <SolidColorBrush x:Key="ButtonStainedWarmGrey" Color="#FF554E47"/>
+    <SolidColorBrush x:Key="WarmGrey" Color="#FF856F60"/>
+    <SolidColorBrush x:Key="StainedWarmGrey" Color="#FF554E47"/>
 
-    <SolidColorBrush x:Key="ButtonDarkGrey" Color="#FF2E2B28"/>
-    <SolidColorBrush x:Key="ButtonStainedDarkGrey" Color="#FF272727"/>
+    <SolidColorBrush x:Key="DarkGrey" Color="#FF2E2B28"/>
+    <SolidColorBrush x:Key="StainedDarkGrey" Color="#FF272727"/>
 </ResourceDictionary>

@@ -65,12 +65,16 @@
     <Compile Include="ViewModels\Base\ObservableObject.cs" />
     <Compile Include="ViewModels\Base\RelayCommand.cs" />
     <Compile Include="ViewModels\Game.ViewModel.cs" />
+    <Compile Include="ViewModels\GameBoard.ViewModel.cs" />
     <Compile Include="ViewModels\MainWindow.ViewModel.cs" />
     <Compile Include="View\AppMain.View.xaml.cs">
       <DependentUpon>AppMain.View.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Game.View.xaml.cs">
       <DependentUpon>Game.View.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\GameBoard.View.xaml.cs">
+      <DependentUpon>GameBoard.View.xaml</DependentUpon>
     </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -96,6 +100,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Styles\Labels.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Styles\TextBlocks.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -105,6 +113,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\Game.View.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\GameBoard.View.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

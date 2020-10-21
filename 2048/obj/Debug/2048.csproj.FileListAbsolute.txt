@@ -23,3 +23,6 @@ C:\Users\BinaryRhythm\source\repos\2048\2048\obj\Debug\Styles\Fonts.baml
 C:\Users\BinaryRhythm\source\repos\2048\2048\obj\Debug\Styles\TextBlocks.baml
 C:\Users\BinaryRhythm\source\repos\2048\2048\obj\Debug\View\Game.View.g.cs
 C:\Users\BinaryRhythm\source\repos\2048\2048\obj\Debug\View\Game.View.baml
+C:\Users\BinaryRhythm\source\repos\2048\2048\obj\Debug\View\GameBoard.View.g.cs
+C:\Users\BinaryRhythm\source\repos\2048\2048\obj\Debug\Styles\Labels.baml
+C:\Users\BinaryRhythm\source\repos\2048\2048\obj\Debug\View\GameBoard.View.baml

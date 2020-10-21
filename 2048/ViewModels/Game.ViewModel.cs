@@ -14,6 +14,7 @@ namespace _2048.ViewModels
         #region Public properties
 
         public GameView View { get; set; }
+        public GameBoardViewModel GameBoard { get; set; }
 
         #endregion
         #region Commands
@@ -26,6 +27,7 @@ namespace _2048.ViewModels
         public GameViewModel(AppMainViewModel main_page)
         {
             this.main_page = main_page;
+            GameBoard = new GameBoardViewModel(this);
 
             GoToMainPage = new RelayCommand(() => this.main_page.goToMainPage());
 
