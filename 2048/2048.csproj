@@ -67,6 +67,7 @@
     <Compile Include="ViewModels\Game.ViewModel.cs" />
     <Compile Include="ViewModels\GameBoard.ViewModel.cs" />
     <Compile Include="ViewModels\MainWindow.ViewModel.cs" />
+    <Compile Include="Models\Tile.Model.cs" />
     <Compile Include="View\AppMain.View.xaml.cs">
       <DependentUpon>AppMain.View.xaml</DependentUpon>
     </Compile>

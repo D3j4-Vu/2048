@@ -12,6 +12,7 @@ namespace _2048.View
         {
             InitializeComponent();
             DataContext = ViewModel;
+            
         }
     }
 }

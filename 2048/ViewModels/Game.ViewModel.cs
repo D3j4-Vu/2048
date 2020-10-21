@@ -1,5 +1,6 @@
 ﻿using _2048.View;
 using _2048.ViewModels.Base;
+using System.Windows;
 using System.Windows.Input;
 
 namespace _2048.ViewModels
@@ -15,7 +16,7 @@ namespace _2048.ViewModels
 
         public GameView View { get; set; }
         public GameBoardViewModel GameBoard { get; set; }
-
+        
         #endregion
         #region Commands
 
@@ -30,7 +31,6 @@ namespace _2048.ViewModels
             GameBoard = new GameBoardViewModel(this);
 
             GoToMainPage = new RelayCommand(() => this.main_page.goToMainPage());
-
 
             View = new GameView(this);
         }

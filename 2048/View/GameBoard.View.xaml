@@ -21,27 +21,60 @@
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
             <Grid.Resources>
-                <Style TargetType="Label" BasedOn="{StaticResource LblRoundedGrey}">
+                <Style TargetType="Border">
                     <Setter Property="Margin" Value="10,10,10,10"/>
                 </Style>
+                <Style TargetType="Label" BasedOn="{StaticResource LblRoundedGrey}"/>
             </Grid.Resources>
             
-            <Label Grid.Row="0" Grid.Column="0"/>
-            <Label Grid.Row="0" Grid.Column="1"/>
-            <Label Grid.Row="0" Grid.Column="2"/>
-            <Label Grid.Row="0" Grid.Column="3"/>
-            <Label Grid.Row="1" Grid.Column="0"/>
-            <Label Grid.Row="1" Grid.Column="1"/>
-            <Label Grid.Row="1" Grid.Column="2"/>
-            <Label Grid.Row="1" Grid.Column="3"/>
-            <Label Grid.Row="2" Grid.Column="0"/>
-            <Label Grid.Row="2" Grid.Column="1"/>
-            <Label Grid.Row="2" Grid.Column="2"/>
-            <Label Grid.Row="2" Grid.Column="3"/>
-            <Label Grid.Row="3" Grid.Column="0"/>
-            <Label Grid.Row="3" Grid.Column="1"/>
-            <Label Grid.Row="3" Grid.Column="2"/>
-            <Label Grid.Row="3" Grid.Column="3"/>
+            <Border Grid.Row="0" Grid.Column="0">
+                <Label Background="{Binding Tiles[0].BackgroundColor}" Foreground="{Binding Tiles[0].FontColor}" Content="{Binding Tiles[0].Text}"/>
+            </Border>
+            <Border Grid.Row="0" Grid.Column="1">
+                <Label Background="{Binding Tiles[1].BackgroundColor}" Foreground="{Binding Tiles[1].FontColor}" Content="{Binding Tiles[1].Text}"/>
+            </Border>
+            <Border Grid.Row="0" Grid.Column="2">
+                <Label Background="{Binding Tiles[2].BackgroundColor}" Foreground="{Binding Tiles[2].FontColor}" Content="{Binding Tiles[2].Text}"/>
+            </Border>
+            <Border Grid.Row="0" Grid.Column="3">
+                <Label Background="{Binding Tiles[3].BackgroundColor}" Foreground="{Binding Tiles[3].FontColor}" Content="{Binding Tiles[3].Text}"/>
+            </Border>
+            <Border Grid.Row="1" Grid.Column="0">
+                <Label Background="{Binding Tiles[4].BackgroundColor}" Foreground="{Binding Tiles[4].FontColor}" Content="{Binding Tiles[4].Text}"/>
+            </Border>
+            <Border Grid.Row="1" Grid.Column="1">
+                <Label Background="{Binding Tiles[5].BackgroundColor}" Foreground="{Binding Tiles[5].FontColor}" Content="{Binding Tiles[5].Text}"/>
+            </Border>
+            <Border Grid.Row="1" Grid.Column="2">
+                <Label Background="{Binding Tiles[6].BackgroundColor}" Foreground="{Binding Tiles[6].FontColor}" Content="{Binding Tiles[6].Text}"/>
+            </Border>
+            <Border Grid.Row="1" Grid.Column="3">
+                <Label Background="{Binding Tiles[7].BackgroundColor}" Foreground="{Binding Tiles[7].FontColor}" Content="{Binding Tiles[7].Text}"/>
+            </Border>
+            <Border Grid.Row="2" Grid.Column="0">
+                <Label Background="{Binding Tiles[8].BackgroundColor}" Foreground="{Binding Tiles[8].FontColor}" Content="{Binding Tiles[8].Text}"/>
+            </Border>
+            <Border Grid.Row="2" Grid.Column="1">
+                <Label Background="{Binding Tiles[9].BackgroundColor}" Foreground="{Binding Tiles[9].FontColor}" Content="{Binding Tiles[9].Text}"/>
+            </Border>
+            <Border Grid.Row="2" Grid.Column="2">
+                <Label Background="{Binding Tiles[10].BackgroundColor}" Foreground="{Binding Tiles[10].FontColor}" Content="{Binding Tiles[10].Text}"/>
+            </Border>
+            <Border Grid.Row="2" Grid.Column="3">
+                <Label Background="{Binding Tiles[11].BackgroundColor}" Foreground="{Binding Tiles[11].FontColor}" Content="{Binding Tiles[11].Text}"/>
+            </Border>
+            <Border Grid.Row="3" Grid.Column="0">
+                <Label Background="{Binding Tiles[12].BackgroundColor}" Foreground="{Binding Tiles[12].FontColor}" Content="{Binding Tiles[12].Text}"/>
+            </Border>
+            <Border Grid.Row="3" Grid.Column="1">
+                <Label Background="{Binding Tiles[13].BackgroundColor}" Foreground="{Binding Tiles[13].FontColor}" Content="{Binding Tiles[13].Text}"/>
+            </Border>
+            <Border Grid.Row="3" Grid.Column="2">
+                <Label Background="{Binding Tiles[14].BackgroundColor}" Foreground="{Binding Tiles[14].FontColor}" Content="{Binding Tiles[14].Text}"/>
+            </Border>
+            <Border Grid.Row="3" Grid.Column="3">
+                <Label Background="{Binding Tiles[15].BackgroundColor}" Foreground="{Binding Tiles[15].FontColor}" Content="{Binding Tiles[15].Text}"/>
+            </Border>
 
         </Grid>
     </Border>
