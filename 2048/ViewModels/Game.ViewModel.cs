@@ -1,4 +1,5 @@
-﻿using _2048.View;
+﻿using _2048.Logic;
+using _2048.View;
 using _2048.ViewModels.Base;
 using System.Windows;
 using System.Windows.Input;
@@ -9,7 +10,7 @@ namespace _2048.ViewModels
     {
         #region Private members
 
-        AppMainViewModel main_page;
+        private AppMainViewModel main_page;
 
         #endregion
         #region Public properties
@@ -18,6 +19,7 @@ namespace _2048.ViewModels
         public GameBoardViewModel GameBoard { get; set; }
         public string Score { get; set; }
         public string BestScore { get; set; }
+
 
         #endregion
         #region Commands
@@ -41,7 +43,16 @@ namespace _2048.ViewModels
         }
 
         #endregion
-        #region Private methods
+        #region Public methods
+
+        public void swipe(Key kb_input)
+        {
+            TileMover.moveTiles(GameBoard.Tiles, kb_input.ToString());
+        }
+
+
+        #endregion
+        #region Helpers
 
         #endregion
     }

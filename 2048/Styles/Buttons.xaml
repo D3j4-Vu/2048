@@ -7,7 +7,6 @@
         <ResourceDictionary Source="Fonts.xaml" />
     </ResourceDictionary.MergedDictionaries>
 
-
     <Style TargetType="{x:Type Button}" x:Key="BtnHoverless" BasedOn="{StaticResource BaseStyle}">
         <Setter Property="Background" Value="Transparent" />
         <Setter Property="BorderThickness" Value="0" />

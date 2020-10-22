@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:_2048.View"
              mc:Ignorable="d" 
              Height="1280" Width="720"
-             d:DesignHeight = "1280" d:DesignWidth = "720"
+             d:DesignHeight = "1280" d:DesignWidth = "720" 
 >
 
     <Border Padding="30" Background="{StaticResource BackgroundLightBrush}">

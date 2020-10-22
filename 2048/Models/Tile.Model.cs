@@ -11,10 +11,19 @@ namespace _2048.ViewModels
     {
         #region Private members
 
+        private int _title_level;
 
         #endregion
         #region Public properties
 
+        public int TileLevel {
+            get { return _title_level; }
+            set
+            {
+                _title_level = value;
+                setupTile(value);
+            }
+        }
         public SolidColorBrush BackgroundColor { get; set; }
         public SolidColorBrush FontColor { get; set; }
         public string Text { get; set; }
@@ -22,104 +31,105 @@ namespace _2048.ViewModels
         #endregion
         #region Constructors
 
-        public TileModel(string number = "")
+        public TileModel(int number = 0)
         {
+            _title_level = number;
             setupTile(number);
         }
 
         #endregion
         #region Private methods
 
-        private void setupTile(string number)
+        private void setupTile(int number)
         {
             switch (number)
             {
-                case "":
+                case 0:
                     BackgroundColor = (SolidColorBrush)Application.Current.TryFindResource("Grey");
                     FontColor = (SolidColorBrush)Application.Current.TryFindResource("WarmGrey");
                     Text = "";
                     break;
-                case "1":
+                case 1:
                     BackgroundColor = (SolidColorBrush)Application.Current.TryFindResource("1");
                     FontColor = (SolidColorBrush)Application.Current.TryFindResource("WarmGrey");
                     Text = "2";
                     break;
-                case "2":
+                case 2:
                     BackgroundColor = (SolidColorBrush)Application.Current.TryFindResource("2");
                     FontColor = (SolidColorBrush)Application.Current.TryFindResource("WarmGrey");
                     Text = "4";
                     break;
-                case "3":
+                case 3:
                     BackgroundColor = (SolidColorBrush)Application.Current.TryFindResource("3");
                     FontColor = (SolidColorBrush)Application.Current.TryFindResource("LightGrey");
                     Text = "8";
                     break;
-                case "4":
+                case 4:
                     BackgroundColor = (SolidColorBrush)Application.Current.TryFindResource("4");
                     FontColor = (SolidColorBrush)Application.Current.TryFindResource("LightGrey");
                     Text = "16";
                     break;
-                case "5":
+                case 5:
                     BackgroundColor = (SolidColorBrush)Application.Current.TryFindResource("5");
                     FontColor = (SolidColorBrush)Application.Current.TryFindResource("LightGrey");
                     Text = "32";
                     break;
-                case "6":
+                case 6:
                     BackgroundColor = (SolidColorBrush)Application.Current.TryFindResource("6");
                     FontColor = (SolidColorBrush)Application.Current.TryFindResource("LightGrey");
                     Text = "64";
                     break;
-                case "7":
+                case 7:
                     BackgroundColor = (SolidColorBrush)Application.Current.TryFindResource("7");
                     FontColor = (SolidColorBrush)Application.Current.TryFindResource("LightGrey");
                     Text = "128";
                     break;
-                case "8":
+                case 8:
                     BackgroundColor = (SolidColorBrush)Application.Current.TryFindResource("8");
                     FontColor = (SolidColorBrush)Application.Current.TryFindResource("LightGrey");
                     Text = "256";
                     break;
-                case "9":
+                case 9:
                     BackgroundColor = (SolidColorBrush)Application.Current.TryFindResource("9");
                     FontColor = (SolidColorBrush)Application.Current.TryFindResource("LightGrey");
                     Text = "512";
                     break;
-                case "10":
+                case 10:
                     BackgroundColor = (SolidColorBrush)Application.Current.TryFindResource("10");
                     FontColor = (SolidColorBrush)Application.Current.TryFindResource("LightGrey");
                     Text = "1024";
                     break;
-                case "11":
+                case 11:
                     BackgroundColor = (SolidColorBrush)Application.Current.TryFindResource("11");
                     FontColor = (SolidColorBrush)Application.Current.TryFindResource("LightGrey");
                     Text = "2048";
                     break;
-                case "12":
+                case 12:
                     BackgroundColor = (SolidColorBrush)Application.Current.TryFindResource("12");
                     FontColor = (SolidColorBrush)Application.Current.TryFindResource("LightGrey");
                     Text = "4096";
                     break;
-                case "13":
+                case 13:
                     BackgroundColor = (SolidColorBrush)Application.Current.TryFindResource("13");
                     FontColor = (SolidColorBrush)Application.Current.TryFindResource("LightGrey");
                     Text = "8192";
                     break;
-                case "14":
+                case 14:
                     BackgroundColor = (SolidColorBrush)Application.Current.TryFindResource("14");
                     FontColor = (SolidColorBrush)Application.Current.TryFindResource("LightGrey");
                     Text = "16384";
                     break;
-                case "15":
+                case 15:
                     BackgroundColor = (SolidColorBrush)Application.Current.TryFindResource("15");
                     FontColor = (SolidColorBrush)Application.Current.TryFindResource("LightGrey");
                     Text = "32768";
                     break;
-                case "16":
+                case 16:
                     BackgroundColor = (SolidColorBrush)Application.Current.TryFindResource("16");
                     FontColor = (SolidColorBrush)Application.Current.TryFindResource("LightGrey");
                     Text = "65536";
                     break;
-                case "17":
+                case 17:
                     BackgroundColor = (SolidColorBrush)Application.Current.TryFindResource("17");
                     FontColor = (SolidColorBrush)Application.Current.TryFindResource("LightGrey");
                     Text = "131072";

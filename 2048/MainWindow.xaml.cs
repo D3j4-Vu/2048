@@ -1,7 +1,7 @@
 ﻿
 using _2048.ViewModels;
 using System.Windows;
-
+using System.Windows.Input;
 
 namespace _2048
 {
@@ -14,6 +14,8 @@ namespace _2048
         {
             InitializeComponent();
             DataContext = new MainWindowViewModel(this.window);
+            
         }
+
     }
 }
