@@ -45,10 +45,7 @@ namespace _2048.ViewModels
         #endregion
         #region Public methods
 
-        public void swipe(Key kb_input)
-        {
-            TileMover.moveTiles(GameBoard.Tiles, kb_input.ToString());
-        }
+
 
 
         #endregion

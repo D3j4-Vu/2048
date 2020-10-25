@@ -61,6 +61,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Logic\GameEngine.cs" />
     <Compile Include="Logic\TileMover.cs" />
     <Compile Include="ViewModels\AppMain.ViewModel.cs" />
     <Compile Include="ViewModels\Base\ObservableObject.cs" />

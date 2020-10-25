@@ -16,6 +16,5 @@ namespace _2048
             DataContext = new MainWindowViewModel(this.window);
             
         }
-
     }
 }

@@ -18,8 +18,8 @@ namespace _2048.View
             InitializeComponent();
             this.ViewModel = ViewModel as GameViewModel;
             DataContext = ViewModel;
+            
         }
-
     }
 
 }

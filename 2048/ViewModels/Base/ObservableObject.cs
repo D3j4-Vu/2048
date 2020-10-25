@@ -13,6 +13,12 @@ namespace _2048.ViewModels.Base
         /// <summary>
         /// The event that is casted when any child property changes.
         /// </summary>
-        public event PropertyChangedEventHandler PropertyChanged = (IChannelSender, e) => { };
+        public event PropertyChangedEventHandler PropertyChanged = (sender, e) => { };
+
+
+        public void OnPropertyChanged(string name)
+        {
+            PropertyChanged(this, new PropertyChangedEventArgs(name));
+        }
     }
 }
