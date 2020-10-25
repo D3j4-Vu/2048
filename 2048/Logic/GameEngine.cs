@@ -27,6 +27,7 @@ namespace _2048.Logic
         {
             Tiles = tiles;
             Engine.SetApartmentState(ApartmentState.STA);
+            Engine.IsBackground = true;
             Engine.Start();
         }
 
@@ -38,14 +39,14 @@ namespace _2048.Logic
 
         static private void run()
         {
+            //bas codde!
             while (true)
             {
-                getKBInput();
                 Thread.Sleep(5);
-                if (direction != "No direction")
+                getKBInput();
+                if (!direction.Equals("No direction"))
                 {
                     TileMover.moveTiles(Tiles, direction);
-
                     direction = "No direction";
                 }
             }
@@ -71,6 +72,7 @@ namespace _2048.Logic
                 direction = "Right";
             }
             else direction = "No direction";
+            while (!Keyboard.IsKeyUp(Key.W)||!Keyboard.IsKeyUp(Key.A)||!Keyboard.IsKeyUp(Key.S)||!Keyboard.IsKeyUp(Key.D)) { Thread.Sleep(5); }
         }
     }
 }

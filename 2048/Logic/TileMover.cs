@@ -11,11 +11,14 @@ namespace _2048.Logic
 {
     public static class TileMover
     {
+        private static int pp = 0;
+
         public static void moveTiles(TileModel[][] tiles, string direction)
         {
             switch (direction)
             {
                 case "Up":
+                    pp++;
                     moveTilesUp(tiles);
                     break;
                 case "Down":
