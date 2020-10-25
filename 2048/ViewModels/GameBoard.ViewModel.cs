@@ -34,6 +34,22 @@ namespace _2048.ViewModels
         }
 
         #endregion
+        #region Public methods
+
+        public void startGame()
+        {
+            resetTiles();
+            GameEngine.start(Tiles);
+        }
+
+        public void stopGame()
+        {
+            GameEngine.stop();
+
+        }
+
+
+        #endregion
         #region Private methods
 
         private void setupTiles()
@@ -49,6 +65,16 @@ namespace _2048.ViewModels
             }
         }
 
+        private void resetTiles()
+        {
+            for (int i = 0; i < 4; i++)
+            {
+                for (int j = 0; j < 4; j++)
+                {
+                    Tiles[i][j].TileLevel = 0;
+                }
+            }
+        }
         #endregion
     }
 }

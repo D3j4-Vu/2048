@@ -20,11 +20,12 @@ namespace _2048.ViewModels
         public string Score { get; set; }
         public string BestScore { get; set; }
 
-
         #endregion
         #region Commands
 
         public ICommand GoToMainPage { get; set; }
+        public ICommand ResetGame { get; set; }
+        public ICommand UndoMove { get; set; }
 
         #endregion
         #region Constructors
@@ -37,7 +38,8 @@ namespace _2048.ViewModels
             Score = "0";
             BestScore = "0";
 
-            GoToMainPage = new RelayCommand(() => this.main_page.goToMainPage());
+            ResetGame = new RelayCommand(() => this.resetGame());
+            GoToMainPage = new RelayCommand(() => this.goToMainPage());
 
             View = new GameView(this);
         }
@@ -45,8 +47,17 @@ namespace _2048.ViewModels
         #endregion
         #region Public methods
 
+        private void goToMainPage()
+        {
+            GameBoard.stopGame();
+            main_page.goToMainPage();
+        }
 
-
+        private void resetGame()
+        {
+            GameBoard.stopGame();
+            GameBoard.startGame();
+        }
 
         #endregion
         #region Helpers

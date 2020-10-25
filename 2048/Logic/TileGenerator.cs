@@ -15,6 +15,7 @@ namespace _2048.Logic
             int rndIdx1;
             int rndIdx2;
 
+            //not optimised... to do: Redesign algorithm.
             while (!isGenerated)
             {
                 rndIdx1 = rndIdx();

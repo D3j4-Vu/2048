@@ -17,15 +17,10 @@ namespace _2048.Logic
         static private Thread Engine;
         static private TileModel[][] Tiles;
 
-
-        static GameEngine()
-        {
-            Engine = new Thread(run);
-        }
-
         static public void start(TileModel[][] tiles)
         {
             Tiles = tiles;
+            Engine = new Thread(run);
             Engine.SetApartmentState(ApartmentState.STA);
             Engine.IsBackground = true;
             Engine.Start();
@@ -34,12 +29,14 @@ namespace _2048.Logic
         static public void stop()
         {
             Engine.Abort();
+            Engine = null;
             Tiles = null;
         }
 
         static private void run()
         {
-            //bas codde!
+            //not optimised... to do: Redesign algorithm.
+            TileGenerator.generateTile(Tiles);
             TileGenerator.generateTile(Tiles);
             while (true)
             {
@@ -48,7 +45,10 @@ namespace _2048.Logic
                 if (!direction.Equals("No direction"))
                 {
                     if(TileMover.moveTiles(Tiles, direction))
+                    {
                         TileGenerator.generateTile(Tiles);
+
+                    }
                     direction = "No direction";
                 }
             }
