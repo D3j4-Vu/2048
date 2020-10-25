@@ -47,23 +47,6 @@ namespace _2048.ViewModels
                     Tiles[i][j] = new TileModel(0);
                 }
             }
-            Tiles[0][0].TileLevel = 1;
-            Tiles[1][0].TileLevel = 1;
-            Tiles[2][0].TileLevel = 2;
-            Tiles[3][0].TileLevel = 3;
-            Tiles[0][1].TileLevel = 0;
-            Tiles[1][1].TileLevel = 0;
-            Tiles[2][1].TileLevel = 1;
-            Tiles[3][1].TileLevel = 2;
-            Tiles[0][2].TileLevel = 3;
-            Tiles[1][2].TileLevel = 1;
-            Tiles[2][2].TileLevel = 1;
-            Tiles[3][2].TileLevel = 1;
-            Tiles[0][3].TileLevel = 1;
-            Tiles[1][3].TileLevel = 1;
-            Tiles[2][3].TileLevel = 1;
-            Tiles[3][3].TileLevel = 2;
-
         }
 
         #endregion

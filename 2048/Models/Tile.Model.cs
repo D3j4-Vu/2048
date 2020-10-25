@@ -141,5 +141,13 @@ namespace _2048.ViewModels
         }
 
         #endregion
+        #region Model functions
+
+        public static bool tileIsBlank(TileModel tile)
+        {
+            return tile.TileLevel == 0;
+        }
+
+        #endregion
     }
 }

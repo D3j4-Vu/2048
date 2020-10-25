@@ -40,13 +40,15 @@ namespace _2048.Logic
         static private void run()
         {
             //bas codde!
+            TileGenerator.generateTile(Tiles);
             while (true)
             {
                 Thread.Sleep(5);
                 getKBInput();
                 if (!direction.Equals("No direction"))
                 {
-                    TileMover.moveTiles(Tiles, direction);
+                    if(TileMover.moveTiles(Tiles, direction))
+                        TileGenerator.generateTile(Tiles);
                     direction = "No direction";
                 }
             }

@@ -1,12 +1,37 @@
-﻿using System;
+﻿using _2048.ViewModels;
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace _2048.Logic
 {
-    class TileGenerator
+    public static class TileGenerator
     {
+        private static Random rnd = new Random();
+        private static List<int> new_levels = new List<int> { 1,1,1,2};
+
+        public static void generateTile(TileModel[][] tiles)
+        {
+            bool isGenerated = false;
+            int rndIdx1;
+            int rndIdx2;
+
+            while (!isGenerated)
+            {
+                rndIdx1 = rndIdx();
+                rndIdx2 = rndIdx();
+                if (tiles[rndIdx1][rndIdx2].TileLevel==0)
+                {
+                    tiles[rndIdx1][rndIdx2].TileLevel = new_levels[rndIdx()];
+                    isGenerated = true;
+                }
+            }
+        }
+
+        
+
+        private static int rndIdx()
+        {
+            return rnd.Next(0, 4);
+        }
     }
 }
