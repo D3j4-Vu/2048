@@ -18,6 +18,7 @@ namespace _2048.Logic
         static private TileModel[][] Tiles;
         static private TileModel[][] OldTiles;
 
+        #region Public methods
         static public void start(TileModel[][] tiles)
         {
             Tiles = tiles;
@@ -28,21 +29,16 @@ namespace _2048.Logic
             Engine.IsBackground = true;
             Engine.Start();
         }
-
         static public void stop()
         {
             Engine.Abort();
             Engine = null;
             Tiles = null;
         }
-
         static public void undoMove()
         {
-            for (int i = 0; i < 4; i++)
-                for (int j = 0; j < 4; j++)
-                    Tiles[i][j].TileLevel = OldTiles[i][j].TileLevel;
+            cloneTiles(OldTiles, Tiles);
         }
-
         static private void run()
         {
             //not optimised... to do: Redesign algorithm.
@@ -65,9 +61,8 @@ namespace _2048.Logic
                 }
             }
         }
-
-        #region Helpers
-        
+        #endregion
+        #region Helpers  
         static private void getKBInput() 
         {
 
@@ -111,7 +106,3 @@ namespace _2048.Logic
         #endregion
     }
 }
-
-
-
-
