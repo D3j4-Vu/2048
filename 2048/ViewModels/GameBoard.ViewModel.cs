@@ -45,9 +45,12 @@ namespace _2048.ViewModels
         public void stopGame()
         {
             GameEngine.stop();
-
         }
 
+        public void undoMove()
+        {
+            GameEngine.undoMove();
+        }
 
         #endregion
         #region Private methods

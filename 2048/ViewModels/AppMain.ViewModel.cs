@@ -1,10 +1,4 @@
-﻿
-
-
-
-
-
-using _2048.View;
+﻿using _2048.View;
 using _2048.ViewModels.Base;
 using System.Windows;
 using System.Windows.Input;

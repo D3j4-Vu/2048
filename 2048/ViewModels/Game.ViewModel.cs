@@ -33,12 +33,14 @@ namespace _2048.ViewModels
         public GameViewModel(AppMainViewModel main_page)
         {
             this.main_page = main_page;
-            GameBoard = new GameBoardViewModel(this);
-
             Score = "0";
             BestScore = "0";
 
+            GameBoard = new GameBoardViewModel(this);
+
             ResetGame = new RelayCommand(() => this.resetGame());
+            UndoMove = new RelayCommand(() => this.undoMove());
+
             GoToMainPage = new RelayCommand(() => this.goToMainPage());
 
             View = new GameView(this);
@@ -59,6 +61,10 @@ namespace _2048.ViewModels
             GameBoard.startGame();
         }
 
+        private void undoMove()
+        {
+            GameBoard.undoMove();
+        }
         #endregion
         #region Helpers
 

@@ -16,10 +16,13 @@ namespace _2048.Logic
 
         static private Thread Engine;
         static private TileModel[][] Tiles;
+        static private TileModel[][] OldTiles;
 
         static public void start(TileModel[][] tiles)
         {
             Tiles = tiles;
+            OldTiles = setupTiles();
+
             Engine = new Thread(run);
             Engine.SetApartmentState(ApartmentState.STA);
             Engine.IsBackground = true;
@@ -33,27 +36,38 @@ namespace _2048.Logic
             Tiles = null;
         }
 
+        static public void undoMove()
+        {
+            for (int i = 0; i < 4; i++)
+                for (int j = 0; j < 4; j++)
+                    Tiles[i][j].TileLevel = OldTiles[i][j].TileLevel;
+        }
+
         static private void run()
         {
             //not optimised... to do: Redesign algorithm.
             TileGenerator.generateTile(Tiles);
             TileGenerator.generateTile(Tiles);
+            TileModel[][] temp_tiles = setupTiles();
             while (true)
             {
                 Thread.Sleep(5);
                 getKBInput();
                 if (!direction.Equals("No direction"))
                 {
-                    if(TileMover.moveTiles(Tiles, direction))
+                    cloneTiles(Tiles,temp_tiles);
+                    if (TileMover.moveTiles(Tiles, direction))
                     {
+                        cloneTiles(temp_tiles,OldTiles);
                         TileGenerator.generateTile(Tiles);
-
                     }
                     direction = "No direction";
                 }
             }
         }
 
+        #region Helpers
+        
         static private void getKBInput() 
         {
 
@@ -76,6 +90,25 @@ namespace _2048.Logic
             else direction = "No direction";
             while (!Keyboard.IsKeyUp(Key.W)||!Keyboard.IsKeyUp(Key.A)||!Keyboard.IsKeyUp(Key.S)||!Keyboard.IsKeyUp(Key.D)) { Thread.Sleep(5); }
         }
+        static private void cloneTiles(TileModel[][] from, TileModel[][] to)
+        {
+            for (int i = 0; i < 4; i++)
+                for (int j = 0; j < 4; j++)
+                    to[i][j].TileLevel = from[i][j].TileLevel;
+        }
+        private static TileModel[][] setupTiles()
+        {
+            TileModel[][] tiles;
+            tiles = new TileModel[4][];
+            for (int i = 0; i < 4; i++)
+            {
+                tiles[i] = new TileModel[4];
+                for (int j = 0; j < 4; j++)
+                    tiles[i][j] = new TileModel(0);
+            }
+            return tiles;
+        }
+        #endregion
     }
 }
 
