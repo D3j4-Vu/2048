@@ -61,7 +61,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Logic\GameEngine.cs" />
     <Compile Include="Logic\ScoreCounter.cs" />
     <Compile Include="Logic\TileGenerator.cs" />
     <Compile Include="Logic\TileMover.cs" />

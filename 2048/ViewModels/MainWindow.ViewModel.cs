@@ -1,10 +1,4 @@
-﻿using _2048.View;
-using _2048.ViewModels.Base;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using _2048.ViewModels.Base;
 using System.Windows;
 
 namespace _2048.ViewModels

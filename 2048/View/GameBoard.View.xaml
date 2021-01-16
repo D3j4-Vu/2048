@@ -5,7 +5,10 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:_2048.View"
              mc:Ignorable="d" 
-             Width="1000" Height="1000">
+             Width="1000" Height="1000"
+             Loaded="UserControl_Loaded"
+             KeyDown="UserControl_KeyDown"
+             >
     <Border Background="{StaticResource StainedWarmGrey}" CornerRadius="25" Padding="10">
         <Grid>
             <Grid.ColumnDefinitions>

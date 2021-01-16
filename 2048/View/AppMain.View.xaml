@@ -7,7 +7,7 @@
              mc:Ignorable="d" 
              Height="1280" Width="720"
              d:DesignHeight = "1280" d:DesignWidth = "720" 
->
+             >
 
     <Border Padding="30" Background="{StaticResource BackgroundLightBrush}">
 
@@ -28,7 +28,7 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
-            <TextBlock Grid.Row="0" Grid.ColumnSpan="3" Text="2048" FontSize="300" Style="{StaticResource WarmTextBlock}"/>
+            <TextBlock x:Name="test" Grid.Row="0" Grid.ColumnSpan="3" Text="2048" FontSize="300" Style="{StaticResource WarmTextBlock}"/>
 
             <Button Grid.Row="2" Grid.Column="1" Style="{StaticResource BtnRoundedYellow}" Content="Start game" Command="{Binding StartGame}"/>
 

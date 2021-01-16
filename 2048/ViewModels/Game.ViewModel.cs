@@ -47,27 +47,29 @@ namespace _2048.ViewModels
         }
 
         #endregion
-        #region Public methods
+        #region Private methods
 
         private void goToMainPage()
         {
-            GameBoard.stopGame();
+            GameBoard.resetTiles();
             main_page.goToMainPage();
+        }
+
+        private void startGame()
+        {
+            GameBoard.generateTile(2);
         }
 
         private void resetGame()
         {
-            GameBoard.stopGame();
-            GameBoard.startGame();
+            GameBoard.resetTiles();
+            startGame();
         }
 
         private void undoMove()
         {
             GameBoard.undoMove();
         }
-        #endregion
-        #region Helpers
-
         #endregion
     }
 }

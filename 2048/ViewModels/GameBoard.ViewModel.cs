@@ -20,64 +20,105 @@ namespace _2048.ViewModels
         
 
         #endregion
-        #region Commands
-        
-        #endregion
         #region Constructors
 
         public GameBoardViewModel(GameViewModel game)
         {
             this.game = game;
-            setupTiles();
-            GameEngine.start(Tiles);
+            Tiles = setupTiles();
             View = new GameBoardView(this);
+            generateTile(2);
         }
 
         #endregion
         #region Public methods
 
-        public void startGame()
+        public void generateTile(int timesToGenerate = 1)
         {
-            resetTiles();
-            GameEngine.start(Tiles);
+            for (int i = 0; i < timesToGenerate; i++)
+                TileGenerator.generateTile(Tiles);
         }
 
-        public void stopGame()
+        public void moveTiles(string direction)
         {
-            GameEngine.stop();
+            cloneTiles(Tiles, temp_tiles);
+            if (TileMover.moveTiles(Tiles, direction))
+            {
+                cloneTiles(temp_tiles, OldTiles);
+                TileGenerator.generateTile(Tiles);
+            }
+        }
+
+        public void resetTiles()
+        {
+            for (int i = 0; i < 4; i++)
+                for (int j = 0; j < 4; j++)
+                    Tiles[i][j].TileLevel = 0;
         }
 
         public void undoMove()
         {
-            GameEngine.undoMove();
+            cloneTiles(OldTiles, Tiles);
         }
 
         #endregion
         #region Private methods
 
-        private void setupTiles()
+        private static TileModel[][] setupTiles()
         {
-            Tiles = new TileModel[4][];
+            TileModel[][] tiles;
+            tiles = new TileModel[4][];
             for (int i = 0; i < 4; i++)
             {
-                Tiles[i] = new TileModel[4];
+                tiles[i] = new TileModel[4];
                 for (int j = 0; j < 4; j++)
-                {
-                    Tiles[i][j] = new TileModel(0);
-                }
+                    tiles[i][j] = new TileModel(0);
             }
+            return tiles;
         }
 
-        private void resetTiles()
+        #endregion
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        //  temporary code !!!!!!!
+
+        private TileModel[][] temp_tiles = setupTiles();
+        private TileModel[][] OldTiles = setupTiles();
+
+        static private void cloneTiles(TileModel[][] from, TileModel[][] to)
         {
             for (int i = 0; i < 4; i++)
-            {
                 for (int j = 0; j < 4; j++)
-                {
-                    Tiles[i][j].TileLevel = 0;
-                }
-            }
+                    to[i][j].TileLevel = from[i][j].TileLevel;
         }
-        #endregion
+
+
+        //
+
+
+
+
+
+
     }
 }
