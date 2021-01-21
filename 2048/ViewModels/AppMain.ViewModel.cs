@@ -5,7 +5,7 @@ using System.Windows.Input;
 
 namespace _2048.ViewModels
 {
-    public class AppMainViewModel: ObservableObject
+    public class AppMainViewModel: ViewModelBase
     {
         #region Private members
 

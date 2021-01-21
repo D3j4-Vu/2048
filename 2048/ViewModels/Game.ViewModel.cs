@@ -6,7 +6,7 @@ using System.Windows.Input;
 
 namespace _2048.ViewModels
 {
-    public class GameViewModel: ObservableObject
+    public class GameViewModel: ViewModelBase
     {
         #region Private members
 
@@ -68,8 +68,9 @@ namespace _2048.ViewModels
 
         private void undoMove()
         {
-            GameBoard.undoMove();
+            UndoManager.Undo();
         }
+
         #endregion
     }
 }

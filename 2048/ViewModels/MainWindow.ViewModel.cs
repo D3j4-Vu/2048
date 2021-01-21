@@ -3,7 +3,7 @@ using System.Windows;
 
 namespace _2048.ViewModels
 {
-    public class MainWindowViewModel: ObservableObject
+    public class MainWindowViewModel: ViewModelBase
     {
         #region Public Members
 

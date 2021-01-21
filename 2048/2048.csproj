@@ -61,12 +61,18 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Helpers\IUndoRedo.cs" />
+    <Compile Include="Helpers\UndoableProperty.cs" />
+    <Compile Include="Helpers\UndoManager.cs" />
+    <Compile Include="Infrastructures\RangedObservableCollection.cs" />
     <Compile Include="Logic\ScoreCounter.cs" />
+    <Compile Include="Logic\temp.cs" />
     <Compile Include="Logic\TileGenerator.cs" />
     <Compile Include="Logic\TileMover.cs" />
     <Compile Include="ViewModels\AppMain.ViewModel.cs" />
-    <Compile Include="ViewModels\Base\ObservableObject.cs" />
-    <Compile Include="ViewModels\Base\RelayCommand.cs" />
+    <Compile Include="ViewModels\Base\UndoableViewModelBase.cs" />
+    <Compile Include="ViewModels\Base\ViewModelBase.cs" />
+    <Compile Include="Infrastructures\RelayCommand.cs" />
     <Compile Include="ViewModels\Game.ViewModel.cs" />
     <Compile Include="ViewModels\GameBoard.ViewModel.cs" />
     <Compile Include="ViewModels\MainWindow.ViewModel.cs" />

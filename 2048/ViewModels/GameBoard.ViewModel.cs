@@ -6,17 +6,28 @@ using System.Windows.Input;
 
 namespace _2048.ViewModels
 {
-    public class GameBoardViewModel : ObservableObject
+    public class GameBoardViewModel : UndoableViewModelBase<GameBoardViewModel>
     {
         #region Private members
 
         private GameViewModel game;
+        private TileModel[][] _tiles;
 
         #endregion
         #region Public properties
 
         public GameBoardView View { get; set; }
-        public TileModel[][] Tiles { get; set; }
+        public TileModel[][] Tiles {
+            get { return _tiles; }
+            set
+            {
+                if (_tiles != value)
+                {
+                    AddUndo(this, "Tiles", _tiles, value);
+                    _tiles = value;
+                }
+            }
+        }
         
 
         #endregion
@@ -25,7 +36,7 @@ namespace _2048.ViewModels
         public GameBoardViewModel(GameViewModel game)
         {
             this.game = game;
-            Tiles = setupTiles();
+            _tiles = setupTiles();
             View = new GameBoardView(this);
             generateTile(2);
         }

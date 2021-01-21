@@ -8,7 +8,7 @@ using System.Windows.Media;
 
 namespace _2048.ViewModels
 {
-    public class TileModel : ObservableObject
+    public class TileModel : ViewModelBase
     {
         #region Private members
 

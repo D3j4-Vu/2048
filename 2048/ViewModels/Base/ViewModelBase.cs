@@ -8,7 +8,7 @@ namespace _2048.ViewModels.Base
     /// Class that casts "PropertyChanged" event when needed.
     /// </summary>
     [AddINotifyPropertyChangedInterface]
-    public class ObservableObject : INotifyPropertyChanged
+    public class ViewModelBase : INotifyPropertyChanged
     {
         /// <summary>
         /// The event that is casted when any child property changes.

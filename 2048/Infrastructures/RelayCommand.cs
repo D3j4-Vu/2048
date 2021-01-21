@@ -3,7 +3,7 @@
 using System;
 using System.Windows.Input;
 
-namespace _2048.ViewModels.Base
+namespace _2048
 {
     /// <summary>
     /// A basic command that runs an Action
