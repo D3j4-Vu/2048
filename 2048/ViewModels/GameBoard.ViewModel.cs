@@ -11,24 +11,14 @@ namespace _2048.ViewModels
         #region Private members
 
         private GameViewModel game;
-        private TileModel[][] _tiles;
 
         #endregion
         #region Public properties
 
         public GameBoardView View { get; set; }
-        public TileModel[][] Tiles {
-            get { return _tiles; }
-            set
-            {
-                if (_tiles != value)
-                {
-                    AddUndo(this, "Tiles", _tiles, value);
-                    _tiles = value;
-                }
-            }
-        }
-        
+        public TileModel[][] Tiles { get; set; }
+        public bool IsLeftUndoMoves { get; set; }
+
 
         #endregion
         #region Constructors
@@ -36,7 +26,8 @@ namespace _2048.ViewModels
         public GameBoardViewModel(GameViewModel game)
         {
             this.game = game;
-            _tiles = setupTiles();
+            IsLeftUndoMoves = false;
+            Tiles = setupTiles();
             View = new GameBoardView(this);
             generateTile(2);
         }
@@ -52,12 +43,14 @@ namespace _2048.ViewModels
 
         public void moveTiles(string direction)
         {
-            cloneTiles(Tiles, temp_tiles);
+            TileModel[][] cloned = cloneTiles(Tiles);
             if (TileMover.moveTiles(Tiles, direction))
             {
-                cloneTiles(temp_tiles, OldTiles);
                 TileGenerator.generateTile(Tiles);
+                AddUndo(this, "Tiles", cloned, Tiles);
             }
+            //temporary
+            checkIfUndoAvailable();
         }
 
         public void resetTiles()
@@ -67,9 +60,16 @@ namespace _2048.ViewModels
                     Tiles[i][j].TileLevel = 0;
         }
 
-        public void undoMove()
+        public void checkIfUndoAvailable()
         {
-            cloneTiles(OldTiles, Tiles);
+            if (UndoManager.IsLeftUndoMoves == true)
+            {
+                IsLeftUndoMoves = true;
+            }
+            else
+            {
+                IsLeftUndoMoves = false;
+            }
         }
 
         #endregion
@@ -77,8 +77,7 @@ namespace _2048.ViewModels
 
         private static TileModel[][] setupTiles()
         {
-            TileModel[][] tiles;
-            tiles = new TileModel[4][];
+            TileModel[][] tiles = new TileModel[4][];
             for (int i = 0; i < 4; i++)
             {
                 tiles[i] = new TileModel[4];
@@ -88,46 +87,20 @@ namespace _2048.ViewModels
             return tiles;
         }
 
-        #endregion
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        //  temporary code !!!!!!!
-
-        private TileModel[][] temp_tiles = setupTiles();
-        private TileModel[][] OldTiles = setupTiles();
-
-        static private void cloneTiles(TileModel[][] from, TileModel[][] to)
+        static private TileModel[][] cloneTiles(TileModel[][] from)
         {
+            TileModel[][] tiles = new TileModel[4][];
             for (int i = 0; i < 4; i++)
+            {
+                tiles[i] = new TileModel[4];
                 for (int j = 0; j < 4; j++)
-                    to[i][j].TileLevel = from[i][j].TileLevel;
+                    tiles[i][j] = new TileModel(from[i][j].TileLevel);
+                    
+            }
+            return tiles;
         }
 
-
-        //
-
-
-
+        #endregion
 
 
 

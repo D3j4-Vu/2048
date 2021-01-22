@@ -1,4 +1,5 @@
-﻿using System;
+﻿using _2048.ViewModels.Base;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,11 +15,22 @@ namespace _2048
     public static class UndoManager
     {
         #region Members
+
         private static RangeObservableCollection<IUndoRedo> _undoList;
         private static RangeObservableCollection<IUndoRedo> _redoList;
         private static int? _maxLimit;
+        
         #endregion
 
+
+        public static bool IsLeftUndoMoves
+        {
+            get { return (_undoList.Count > 0) ? true : false; }
+        }
+        public static int GetLeftUndo
+        {
+            get { return _maxLimit.HasValue ? (_undoList.Count % (_maxLimit.Value + 1)) : (-1); }
+        }
         /// <summary>
         /// Add an undoable instance into the Undo list.
         /// </summary>
@@ -122,6 +134,7 @@ namespace _2048
                 UpdateRedoList(copyRedoList);
                 UndoList.Clear();
                 UndoList.AddRange(copyUndoList);
+
             }
         }
 

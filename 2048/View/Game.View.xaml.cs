@@ -20,6 +20,7 @@ namespace _2048.View
             DataContext = ViewModel;
             
         }
+
     }
 
 }

@@ -6,7 +6,7 @@ using System.Windows.Input;
 
 namespace _2048.ViewModels
 {
-    public class GameViewModel: ViewModelBase
+    public class GameViewModel : ViewModelBase
     {
         #region Private members
 
@@ -19,7 +19,6 @@ namespace _2048.ViewModels
         public GameBoardViewModel GameBoard { get; set; }
         public string Score { get; set; }
         public string BestScore { get; set; }
-
         #endregion
         #region Commands
 
@@ -47,7 +46,12 @@ namespace _2048.ViewModels
         }
 
         #endregion
+
+
+
+
         #region Private methods
+
 
         private void goToMainPage()
         {
@@ -63,12 +67,15 @@ namespace _2048.ViewModels
         private void resetGame()
         {
             GameBoard.resetTiles();
+            UndoManager.ClearAll();
             startGame();
         }
 
         private void undoMove()
         {
             UndoManager.Undo();
+            //temporary
+            GameBoard.checkIfUndoAvailable();
         }
 
         #endregion

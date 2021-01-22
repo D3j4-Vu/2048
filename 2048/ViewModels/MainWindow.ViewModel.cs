@@ -14,6 +14,8 @@ namespace _2048.ViewModels
 
         public MainWindowViewModel(Window window)
         {
+            UndoManager.MaximumUndoLimit = 5;
+
             this.AppMainVM = new AppMainViewModel(window);
         }
 
