@@ -33,6 +33,7 @@ namespace _2048
 
         private static void moveTilesUp(TileModel[][] tiles)
         {
+            bool isMergeOn = true;
             for (int i = 0; i < 4; i++)
                 for (int j = 0; j < 4; j++)
                 {
@@ -45,19 +46,23 @@ namespace _2048
                                 tilesMoved = true;
                                 break;
                             }
-                    if (j > 0 && tiles[i][j].TileLevel > 0)
+                    if (j > 0 && tiles[i][j].TileLevel > 0 && isMergeOn)
                         if (tiles[i][j].TileLevel == tiles[i][j - 1].TileLevel)
                         {
                             tiles[i][j - 1].TileLevel++;
                             tiles[i][j].TileLevel = 0;
                             tilesMoved = true;
                             j--;
+                            isMergeOn = false;
+                            continue;
                         }
+                    isMergeOn = true;
                 }
         }
 
         private static void moveTilesDown(TileModel[][] tiles)
         {
+            bool isMergeOn = true;
             for (int i = 0; i < 4; i++)
                 for (int j = 3; j >= 0; j--)
                 {
@@ -70,19 +75,23 @@ namespace _2048
                                 tilesMoved = true;
                                 break;
                             }
-                    if (j < 3 && tiles[i][j].TileLevel > 0)
+                    if (j < 3 && tiles[i][j].TileLevel > 0 && isMergeOn)
                         if (tiles[i][j].TileLevel == tiles[i][j + 1].TileLevel)
                         {
                             tiles[i][j + 1].TileLevel++;
                             tiles[i][j].TileLevel = 0;
                             tilesMoved = true;
                             j++;
+                            isMergeOn = false;
+                            continue;
                         }
+                    isMergeOn = true;
                 }
         }
 
         private static void moveTilesLeft(TileModel[][] tiles)
         {
+            bool isMergeOn = true;
             for (int j = 0; j < matrixSize; j++)
                 for (int i = 0; i < matrixSize; i++)
                 {
@@ -95,19 +104,23 @@ namespace _2048
                                 tilesMoved = true;
                                 break;
                             }
-                    if (i > 0 && tiles[i][j].TileLevel > 0)
+                    if (i > 0 && tiles[i][j].TileLevel > 0 && isMergeOn)
                         if (tiles[i][j].TileLevel == tiles[i - 1][j].TileLevel)
                         {
                             tiles[i - 1][j].TileLevel++;
                             tiles[i][j].TileLevel = 0;
                             tilesMoved = true;
                             i--;
+                            isMergeOn = false;
+                            continue;
                         }
+                    isMergeOn = true;
                 }
         }
 
         private static void moveTilesRight(TileModel[][] tiles)
         {
+            bool isMergeOn = true;
             for (int j = 0; j < 4; j++)
                 for (int i = 3; i >= 0; i--)
                 {
@@ -120,14 +133,17 @@ namespace _2048
                                 tilesMoved = true;
                                 break;
                             }
-                    if (i < 3 && tiles[i][j].TileLevel > 0)
+                    if (i < 3 && tiles[i][j].TileLevel > 0 && isMergeOn)
                         if (tiles[i][j].TileLevel == tiles[i + 1][j].TileLevel)
                         {
                             tiles[i + 1][j].TileLevel++;
                             tiles[i][j].TileLevel = 0;
                             tilesMoved = true;
                             i++;
+                            isMergeOn = false;
+                            continue;
                         }
+                    isMergeOn = true;
                 }
         }
 
