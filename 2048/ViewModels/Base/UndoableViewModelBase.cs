@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace _2048.ViewModels.Base
+namespace _2048
 {
     public abstract class UndoableViewModelBase<T> : ViewModelBase
     {

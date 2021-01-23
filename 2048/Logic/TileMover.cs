@@ -1,8 +1,7 @@
-﻿using _2048.ViewModels;
-using System;
+﻿using System;
 
 
-namespace _2048.Logic
+namespace _2048
 {
     public static class TileMover
     {

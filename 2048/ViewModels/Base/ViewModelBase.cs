@@ -2,7 +2,7 @@
 using System.ComponentModel;
 
 
-namespace _2048.ViewModels.Base
+namespace _2048
 {
     /// <summary>
     /// Class that casts "PropertyChanged" event when needed.

@@ -1,9 +1,8 @@
 ﻿
-using _2048.ViewModels;
 using System.Windows.Controls;
 using System.Windows.Input;
 
-namespace _2048.View
+namespace _2048
 {
     public partial class GameBoardView : UserControl
     {

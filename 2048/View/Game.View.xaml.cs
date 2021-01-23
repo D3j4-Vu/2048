@@ -1,10 +1,9 @@
 ﻿
-using _2048.ViewModels;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 
-namespace _2048.View
+namespace _2048
 {
     /// <summary>
     /// Interaction logic for Game.xaml

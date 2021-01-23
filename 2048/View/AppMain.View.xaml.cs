@@ -2,7 +2,7 @@
 using System.Windows.Controls;
 
 
-namespace _2048.View
+namespace _2048
 {
     /// <summary>
     /// Interaction logic for AppMain.xaml

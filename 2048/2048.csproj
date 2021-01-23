@@ -68,6 +68,7 @@
     <Compile Include="Logic\ScoreCounter.cs" />
     <Compile Include="Logic\TileGenerator.cs" />
     <Compile Include="Logic\TileMover.cs" />
+    <Compile Include="Models\Board.Model.cs" />
     <Compile Include="ViewModels\AppMain.ViewModel.cs" />
     <Compile Include="ViewModels\Base\UndoableViewModelBase.cs" />
     <Compile Include="ViewModels\Base\ViewModelBase.cs" />

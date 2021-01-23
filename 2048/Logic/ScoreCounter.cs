@@ -1,12 +1,11 @@
-﻿using _2048.ViewModels;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Media;
 
-namespace _2048.Logic
+namespace _2048
 {
     public static class ScoreCounter
     {
