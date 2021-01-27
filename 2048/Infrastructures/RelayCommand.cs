@@ -15,7 +15,7 @@ namespace _2048
         /// <summary>
         /// The action to run
         /// </summary>
-        private Action mAction;
+        private Action<object> mAction;
 
         #endregion
 
@@ -30,10 +30,7 @@ namespace _2048
 
         #region Constructor
 
-        /// <summary>
-        /// Default constructor
-        /// </summary>
-        public RelayCommand(Action action)
+        public RelayCommand(Action<object> action)
         {
             mAction = action;
         }
@@ -58,7 +55,7 @@ namespace _2048
         /// <param name="parameter"></param>
         public void Execute(object parameter)
         {
-            mAction();
+            mAction(parameter);
         }
 
         #endregion

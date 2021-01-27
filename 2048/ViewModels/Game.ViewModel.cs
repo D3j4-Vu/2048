@@ -13,15 +13,17 @@ namespace _2048
         #region Public properties
 
         public GameView View { get; set; }
-        public GameBoardViewModel GameBoard { get; set; }
+        public GameBoardViewModel GameBoardVM { get; set; }
         public string Score { get; set; }
         public string BestScore { get; set; }
         #endregion
         #region Commands
 
         public ICommand GoToMainPage { get; set; }
+        public ICommand Swipe { get; set; }
         public ICommand ResetGame { get; set; }
         public ICommand UndoMove { get; set; }
+
 
         #endregion
         #region Constructors
@@ -32,47 +34,30 @@ namespace _2048
             Score = "0";
             BestScore = "0";
 
-            GameBoard = new GameBoardViewModel(this);
+            GameBoardVM = new GameBoardViewModel(this);
 
-            ResetGame = new RelayCommand(() => this.resetGame());
-            UndoMove = new RelayCommand(() => this.undoMove());
-
-            GoToMainPage = new RelayCommand(() => this.goToMainPage());
+            setupCommands();
 
             View = new GameView(this);
         }
 
         #endregion
 
-
-
-
         #region Private methods
+
+        private void setupCommands()
+        {
+            Swipe = new RelayCommand((object arg) => GameBoardVM.swipeBoard(arg.ToString()));
+            ResetGame = new RelayCommand((object arg) => GameBoardVM.resetBoard());
+            UndoMove = new RelayCommand((object arg) => GameBoardVM.undoSwipe());
+            GoToMainPage = new RelayCommand((object arg) => goToMainPage());
+        }
 
 
         private void goToMainPage()
         {
-            GameBoard.resetTiles();
+            GameBoardVM.resetBoard();
             main_page.goToMainPage();
-        }
-
-        private void startGame()
-        {
-            GameBoard.generateTile(2);
-        }
-
-        private void resetGame()
-        {
-            GameBoard.resetTiles();
-            UndoManager.ClearAll();
-            startGame();
-        }
-
-        private void undoMove()
-        {
-            UndoManager.Undo();
-            //temporary
-            GameBoard.checkIfUndoAvailable();
         }
 
         #endregion

@@ -5,8 +5,14 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:_2048"
              mc:Ignorable="d" 
-             d:DesignHeight="1920" d:DesignWidth="1080">
-
+             d:DesignHeight="1920" d:DesignWidth="1080"
+             Loaded="UserControl_Loaded">
+    <UserControl.InputBindings>
+        <KeyBinding x:Name="KeyUp" Key="Up" Command="{Binding Swipe}" CommandParameter="{Binding ElementName=KeyUp, Path=Key}"/>
+        <KeyBinding x:Name="KeyDown" Key="Down" Command="{Binding Swipe}" CommandParameter="{Binding ElementName=KeyDown, Path=Key}"/>
+        <KeyBinding x:Name="KeyLeft" Key="Left" Command="{Binding Swipe}" CommandParameter="{Binding ElementName=KeyLeft, Path=Key}"/>
+        <KeyBinding x:Name="KeyRight" Key="Right" Command="{Binding Swipe}" CommandParameter="{Binding ElementName=KeyRight, Path=Key}"/>
+    </UserControl.InputBindings>
     <Grid Background="{StaticResource BackgroundLightBrush}">
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
@@ -34,7 +40,7 @@
 
                 <Button Style="{StaticResource BtnRounded}" Background="{StaticResource StainedDarkGrey}" Content="{Binding Score}" Margin="0,0,0,0"/>
                 <TextBlock VerticalAlignment="Bottom" Text="Score" Style="{StaticResource WarmTextBlock}"/>
-                <Button Grid.Row="1" Style="{StaticResource BtnRoundedRed}" Margin="0,5,0,0" Content="NEW" Command="{Binding ResetGame}"/>
+                <Button Grid.Row="1" Style="{StaticResource BtnRoundedRed}" Margin="0,5,0,0" Content="NEW" Command="{Binding ResetGame}" CommandParameter="{Binding Score}"/>
             </Grid>
         </Viewbox>
 
@@ -65,7 +71,7 @@
         </Viewbox>
 
         <Viewbox Stretch="Uniform" Grid.Row="1" Grid.ColumnSpan="3">
-                <ContentControl Content="{Binding GameBoard.View}"/>
+                <ContentControl Content="{Binding GameBoardVM.View}"/>
         </Viewbox>
 
     </Grid>

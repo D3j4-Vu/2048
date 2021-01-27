@@ -6,8 +6,6 @@
              xmlns:local="clr-namespace:_2048"
              mc:Ignorable="d" 
              Width="1000" Height="1000"
-             Loaded="UserControl_Loaded"
-             KeyDown="UserControl_KeyDown"
              >
     <Border Background="{StaticResource StainedWarmGrey}" CornerRadius="25" Padding="10">
         <Grid>

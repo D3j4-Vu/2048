@@ -20,6 +20,12 @@ namespace _2048
             
         }
 
+        private void UserControl_Loaded(object sender, System.Windows.RoutedEventArgs e)
+        {
+            this.Focusable = true;
+            this.Focus();
+        }
+
     }
 
 }

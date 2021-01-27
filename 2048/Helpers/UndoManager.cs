@@ -13,39 +13,14 @@ namespace _2048
     /// </summary>
     public static class UndoManager
     {
-        #region Members
+        #region Private members
 
         private static RangeObservableCollection<IUndoRedo> _undoList;
         private static RangeObservableCollection<IUndoRedo> _redoList;
         private static int? _maxLimit;
-        
+
         #endregion
-
-
-        public static bool IsLeftUndoMoves
-        {
-            get { return (_undoList.Count > 0) ? true : false; }
-        }
-        public static int GetLeftUndo
-        {
-            get { return _maxLimit.HasValue ? (_undoList.Count % (_maxLimit.Value + 1)) : (-1); }
-        }
-        /// <summary>
-        /// Add an undoable instance into the Undo list.
-        /// </summary>
-        /// <typeparam name="T">The type of instance this is.</typeparam>
-        /// <param name="instance">The instance this undo item applies to.</param>
-        public static void Add<T>(T instance) where T : IUndoRedo
-        {
-            if (instance == null)
-                throw new ArgumentNullException("instance");
-
-            UndoList.Add(instance);
-            RedoList.Clear();
-
-            // Ensure that the undo list does not exceed the maximum size.
-            TrimUndoList();
-        }
+        #region Public properties
 
         /// <summary>
         /// Get or set the maximum size of the undo list.
@@ -68,19 +43,42 @@ namespace _2048
         }
 
         /// <summary>
-        /// Ensure that the undo list does not get too big by
-        /// checking the size of the collection against the
-        /// <see cref="MaximumUndoLimit"/>
+        /// Get the undo list.
         /// </summary>
-        private static void TrimUndoList()
+        public static RangeObservableCollection<IUndoRedo> UndoList
         {
-            if (_maxLimit.HasValue && _maxLimit.Value > 0)
+            get
             {
-                while (_maxLimit.Value < UndoList.Count)
-                {
-                    UndoList.RemoveAt(0);
-                }
+                if (_undoList == null)
+                    _undoList = new RangeObservableCollection<IUndoRedo>();
+                return _undoList;
             }
+            private set
+            {
+                _undoList = value;
+            }
+        }
+
+        /// <summary>
+        /// Get the redo list.
+        /// </summary>
+        public static RangeObservableCollection<IUndoRedo> RedoList
+        {
+            get
+            {
+                if (_redoList == null)
+                    _redoList = new RangeObservableCollection<IUndoRedo>();
+                return _redoList;
+            }
+            private set
+            {
+                _redoList = value;
+            }
+        }
+
+        public static int LeftUndo
+        {
+            get { return _maxLimit.HasValue ? (_undoList.Count % (_maxLimit.Value + 1)) : (-1); }
         }
 
         /// <summary>
@@ -102,6 +100,42 @@ namespace _2048
             get
             {
                 return RedoList.Count > 0;
+            }
+        }
+        #endregion
+        #region Public methods
+        /// <summary>
+        /// Add an undoable instance into the Undo list.
+        /// </summary>
+        /// <typeparam name="T">The type of instance this is.</typeparam>
+        /// <param name="instance">The instance this undo item applies to.</param>
+        public static void Add<T>(T instance) where T : IUndoRedo
+        {
+            if (instance == null)
+                throw new ArgumentNullException("instance");
+
+            UndoList.Add(instance);
+            RedoList.Clear();
+
+            // Ensure that the undo list does not exceed the maximum size.
+            TrimUndoList();
+        }
+
+
+
+        /// <summary>
+        /// Ensure that the undo list does not get too big by
+        /// checking the size of the collection against the
+        /// <see cref="MaximumUndoLimit"/>
+        /// </summary>
+        private static void TrimUndoList()
+        {
+            if (_maxLimit.HasValue && _maxLimit.Value > 0)
+            {
+                while (_maxLimit.Value < UndoList.Count)
+                {
+                    UndoList.RemoveAt(0);
+                }
             }
         }
 
@@ -163,6 +197,8 @@ namespace _2048
                 UpdateRedoList(redoList);
             }
         }
+        #endregion
+        #region Private methods
 
         private static void UpdateRedoList(List<IUndoRedo> redoList)
         {
@@ -170,38 +206,6 @@ namespace _2048
             RedoList.AddRange(redoList);
         }
 
-        /// <summary>
-        /// Get the undo list.
-        /// </summary>
-        public static RangeObservableCollection<IUndoRedo> UndoList
-        {
-            get
-            {
-                if (_undoList == null)
-                    _undoList = new RangeObservableCollection<IUndoRedo>();
-                return _undoList;
-            }
-            private set
-            {
-                _undoList = value;
-            }
-        }
-
-        /// <summary>
-        /// Get the redo list.
-        /// </summary>
-        public static RangeObservableCollection<IUndoRedo> RedoList
-        {
-            get
-            {
-                if (_redoList == null)
-                    _redoList = new RangeObservableCollection<IUndoRedo>();
-                return _redoList;
-            }
-            private set
-            {
-                _redoList = value;
-            }
-        }
+        #endregion
     }
 }

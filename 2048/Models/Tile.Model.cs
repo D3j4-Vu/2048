@@ -6,7 +6,7 @@ using System.Windows.Media;
 
 namespace _2048
 {
-    public class TileModel : ViewModelBase
+    public class TileModel: ObservableObject
     {
         #region Private members
 
@@ -19,10 +19,12 @@ namespace _2048
             get { return _title_level; }
             set
             {
+                if(value >= 0 && value <= 17)
                 _title_level = value;
                 setupTile(value);
             }
         }
+        public bool isTileBlank { get { return TileLevel == 0 ? true : false; } }
         public SolidColorBrush BackgroundColor { get; set; }
         public SolidColorBrush FontColor { get; set; }
         public string Text { get; set; }
@@ -34,6 +36,27 @@ namespace _2048
         {
             _title_level = number;
             setupTile(number);
+        }
+
+        #endregion
+        #region Public methods
+
+        public void mergeTiles(TileModel tileToMerge)
+        {
+            if (this.TileLevel == tileToMerge.TileLevel)
+            {
+                this.TileLevel++;
+                tileToMerge.TileLevel = 0;
+            }
+        }
+
+        public void moveHere(TileModel tileToMove)
+        {
+            if (this.TileLevel == 0 && tileToMove.TileLevel != 0)
+            {
+                this.TileLevel = tileToMove.TileLevel;
+                tileToMove.TileLevel = 0;
+            }
         }
 
         #endregion
@@ -140,13 +163,6 @@ namespace _2048
         }
 
         #endregion
-        #region Model functions
 
-        public static bool tileIsBlank(TileModel tile)
-        {
-            return tile.TileLevel == 0;
-        }
-
-        #endregion
     }
 }

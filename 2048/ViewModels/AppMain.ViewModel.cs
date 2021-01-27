@@ -38,8 +38,8 @@ namespace _2048
 
             GameVM = null;
             
-            CloseCommand = new RelayCommand(() => this.window.Close());
-            StartGame = new RelayCommand(() => startGame());
+            CloseCommand = new RelayCommand((object arg) => window.Close());
+            StartGame = new RelayCommand((object arg) => startGame());
 
             View = new AppMainView(this);
         }
