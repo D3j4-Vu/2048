@@ -39,7 +39,7 @@ namespace _2048
 
         public void moveTiles(string direction)
         {
-            if (moveTiles(Tiles, direction))
+            if (moveTilesByDirection(direction))
             {
                 generateTile();
                 //AddUndo(this, "Tiles", cloned, Tiles);
@@ -95,22 +95,22 @@ namespace _2048
 
         #region Tile moving
 
-        public bool moveTiles(TileModel[][] tiles, string direction)
+        public bool moveTilesByDirection(string direction)
         {
             tilesMoved = false;
             switch (direction)
             {
                 case "Up":
-                    moveTilesUp(tiles);
+                    moveTilesUp();
                     break;
                 case "Down":
-                    moveTilesDown(tiles);
+                    moveTilesDown();
                     break;
                 case "Left":
-                    moveTilesLeft(tiles);
+                    moveTilesLeft();
                     break;
                 case "Right":
-                    moveTilesRight(tiles);
+                    moveTilesRight();
                     break;
                 default:
                     break;
@@ -118,7 +118,7 @@ namespace _2048
             return tilesMoved;
         }
 
-        private void moveTilesUp(TileModel[][] tiles)
+        private void moveTilesUp()
         {
             bool isMergeOn = true;
             for (int i = 0; i < BoardSize; i++)
@@ -128,14 +128,14 @@ namespace _2048
                         for (int k = 1; k < BoardSize; k++)
                             if (j < BoardSize - k && !Tiles[i][j + k].isTileBlank)
                             {
-                                tiles[i][j].moveHere(tiles[i][j + k]);
+                                Tiles[i][j].moveHere(Tiles[i][j + k]);
                                 tilesMoved = true;
                                 break;
                             }
-                    if (j > 0 && tiles[i][j].TileLevel > 0 && isMergeOn)
-                        if (tiles[i][j].TileLevel == tiles[i][j - 1].TileLevel)
+                    if (j > 0 && Tiles[i][j].TileLevel > 0 && isMergeOn)
+                        if (Tiles[i][j].TileLevel == Tiles[i][j - 1].TileLevel)
                         {
-                            tiles[i][j - 1].mergeTiles(tiles[i][j]);
+                            Tiles[i][j - 1].mergeTiles(Tiles[i][j]);
                             tilesMoved = true;
                             j--;
                             isMergeOn = false;
@@ -145,7 +145,7 @@ namespace _2048
                 }
         }
 
-        private void moveTilesDown(TileModel[][] tiles)
+        private void moveTilesDown()
         {
             bool isMergeOn = true;
             for (int i = 0; i < BoardSize; i++)
@@ -155,14 +155,14 @@ namespace _2048
                         for (int k = 1; k < BoardSize; k++)
                             if (j >= k && !Tiles[i][j - k].isTileBlank)
                             {
-                                tiles[i][j].moveHere(tiles[i][j - k]);
+                                Tiles[i][j].moveHere(Tiles[i][j - k]);
                                 tilesMoved = true;
                                 break;
                             }
-                    if (j < 3 && tiles[i][j].TileLevel > 0 && isMergeOn)
-                        if (tiles[i][j].TileLevel == tiles[i][j + 1].TileLevel)
+                    if (j < 3 && Tiles[i][j].TileLevel > 0 && isMergeOn)
+                        if (Tiles[i][j].TileLevel == Tiles[i][j + 1].TileLevel)
                         {
-                            tiles[i][j + 1].mergeTiles(tiles[i][j]);
+                            Tiles[i][j + 1].mergeTiles(Tiles[i][j]);
                             tilesMoved = true;
                             j++;
                             isMergeOn = false;
@@ -172,7 +172,7 @@ namespace _2048
                 }
         }
 
-        private void moveTilesLeft(TileModel[][] tiles)
+        private void moveTilesLeft()
         {
             bool isMergeOn = true;
             for (int j = 0; j < BoardSize; j++)
@@ -182,13 +182,13 @@ namespace _2048
                         for (int k = 1; k < BoardSize; k++)
                             if (i < BoardSize - k && !Tiles[i + k][j].isTileBlank)
                             {
-                                tiles[i][j].moveHere(tiles[i + k][j]);
+                                Tiles[i][j].moveHere(Tiles[i + k][j]);
                                 break;
                             }
-                    if (i > 0 && tiles[i][j].TileLevel > 0 && isMergeOn)
-                        if (tiles[i][j].TileLevel == tiles[i - 1][j].TileLevel)
+                    if (i > 0 && Tiles[i][j].TileLevel > 0 && isMergeOn)
+                        if (Tiles[i][j].TileLevel == Tiles[i - 1][j].TileLevel)
                         {
-                            tiles[i - 1][j].mergeTiles(tiles[i][j]);
+                            Tiles[i - 1][j].mergeTiles(Tiles[i][j]);
                             tilesMoved = true;
                             i--;
                             isMergeOn = false;
@@ -198,7 +198,7 @@ namespace _2048
                 }
         }
 
-        private void moveTilesRight(TileModel[][] tiles)
+        private void moveTilesRight()
         {
             bool isMergeOn = true;
             for (int j = 0; j < 4; j++)
@@ -208,14 +208,14 @@ namespace _2048
                         for (int k = 1; k < BoardSize; k++)
                             if (i >= k && !Tiles[i - k][j].isTileBlank)
                             {
-                                tiles[i][j].moveHere(tiles[i - k][j]);
+                                Tiles[i][j].moveHere(Tiles[i - k][j]);
                                 tilesMoved = true;
                                 break;
                             }
-                    if (i < 3 && tiles[i][j].TileLevel > 0 && isMergeOn)
-                        if (tiles[i][j].TileLevel == tiles[i + 1][j].TileLevel)
+                    if (i < 3 && Tiles[i][j].TileLevel > 0 && isMergeOn)
+                        if (Tiles[i][j].TileLevel == Tiles[i + 1][j].TileLevel)
                         {
-                            tiles[i + 1][j].mergeTiles(tiles[i][j]);
+                            Tiles[i + 1][j].mergeTiles(Tiles[i][j]);
                             tilesMoved = true;
                             i++;
                             isMergeOn = false;
@@ -237,7 +237,7 @@ namespace _2048
             int rndIdx1;
             int rndIdx2;
 
-            //not optimised, this is temporary jus for testing... to do: Redesign algorithm.
+            //not optimised, this is temporary just for testing... to do: Redesign algorithm.
             while (!isGenerated)
             {
                 rndIdx1 = rnd.Next(0, 4);
