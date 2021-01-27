@@ -3,15 +3,11 @@ using System.Windows.Input;
 
 namespace _2048
 {
-    public class GameBoardViewModel : UndoableViewModelBase<GameBoardViewModel>
+    public class GameBoardViewModel: ViewModelBase
     {
-        #region Private members
-
-        private GameViewModel game;
-
-        #endregion
         #region Public properties
 
+        public bool IsLeftUndoMoves { get { return UndoManager.isLeftUndos; } }
         public GameBoardView View { get; set; }
         public BoardModel GameBoard { get; set; }
         public TileModel[][] Tiles
@@ -22,9 +18,8 @@ namespace _2048
         #endregion
         #region Constructors
 
-        public GameBoardViewModel(GameViewModel game)
+        public GameBoardViewModel()
         {
-            this.game = game;
             GameBoard = new BoardModel();
             View = new GameBoardView(this);
         }
@@ -35,16 +30,19 @@ namespace _2048
         public void swipeBoard(string direction)
         {
             GameBoard.moveTiles(direction);
+            OnPropertyChanged("IsLeftUndoMoves");
         }
 
         public void undoSwipe()
         {
             GameBoard.undo();
+            OnPropertyChanged("IsLeftUndoMoves");
         }
 
         public void resetBoard()
         {
             GameBoard.reset();
+            OnPropertyChanged("IsLeftUndoMoves");
         }
 
         #endregion

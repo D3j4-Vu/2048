@@ -10,11 +10,10 @@ namespace _2048
     /// This class encapsulates a single undoable property.
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    public class UndoableProperty<T> : IUndoRedo
+    public class UndoableProperty<T> : IUndo
     {
         #region Member
         private object _oldValue;
-        private object _newValue;
         private string _property;
         private T _instance;
         #endregion
@@ -26,8 +25,8 @@ namespace _2048
         /// <param name="instance">The instance of the property.</param>
         /// <param name="oldValue">The pre-change property.</param>
         /// <param name="newValue">The post-change property.</param>
-        public UndoableProperty(string property, T instance, object oldValue, object newValue)
-            : this(property, instance, oldValue, newValue, property)
+        public UndoableProperty(string property, T instance, object oldValue)
+            : this(property, instance, oldValue, property)
         {
         }
 
@@ -40,13 +39,12 @@ namespace _2048
         /// <param name="oldValue">The pre-change property.</param>
         /// <param name="newValue">The post-change property.</param>
         /// <param name="name">The name of the undo operation.</param>
-        public UndoableProperty(string property, T instance, object oldValue, object newValue, string name)
+        public UndoableProperty(string property, T instance, object oldValue, string name)
             : base()
         {
             _instance = instance;
             _property = property;
             _oldValue = oldValue;
-            _newValue = newValue;
 
             Name = name;
 
@@ -65,11 +63,6 @@ namespace _2048
         public void Undo()
         {
             _instance.GetType().GetProperty(_property).SetValue(_instance, _oldValue, null);
-        }
-
-        public void Redo()
-        {
-            _instance.GetType().GetProperty(_property).SetValue(_instance, _newValue, null);
         }
     }
 }

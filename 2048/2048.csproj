@@ -65,10 +65,9 @@
     <Compile Include="Helpers\ObservableObject.cs" />
     <Compile Include="Helpers\UndoableProperty.cs" />
     <Compile Include="Helpers\UndoManager.cs" />
-    <Compile Include="Infrastructures\RangedObservableCollection.cs" />
     <Compile Include="Models\Board.Model.cs" />
     <Compile Include="ViewModels\AppMain.ViewModel.cs" />
-    <Compile Include="ViewModels\Base\UndoableViewModelBase.cs" />
+    <Compile Include="Helpers\Undoable.cs" />
     <Compile Include="ViewModels\Base\ViewModelBase.cs" />
     <Compile Include="Infrastructures\RelayCommand.cs" />
     <Compile Include="ViewModels\Game.ViewModel.cs" />

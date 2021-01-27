@@ -34,7 +34,7 @@ namespace _2048
             Score = "0";
             BestScore = "0";
 
-            GameBoardVM = new GameBoardViewModel(this);
+            GameBoardVM = new GameBoardViewModel();
 
             setupCommands();
 

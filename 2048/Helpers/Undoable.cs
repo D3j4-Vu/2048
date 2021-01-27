@@ -6,14 +6,14 @@ using System.Threading.Tasks;
 
 namespace _2048
 {
-    public abstract class UndoableViewModelBase<T> : ViewModelBase
+    public abstract class Undoable<T>: ObservableObject
     {
         private List<UndoableProperty<T>> _undoables;
 
         /// <summary>
         /// Get the list of undoable/redoable entries for this VM.
         /// </summary>
-        protected List<UndoableProperty<T>> Undoable
+        protected List<UndoableProperty<T>> Undoables
         {
             get
             {
@@ -26,7 +26,7 @@ namespace _2048
         /// <summary>
         /// Initializes a new instance of <see cref="UndoableViewModelBase"/>
         /// </summary>
-        public UndoableViewModelBase() : base() { }
+        public Undoable() : base() { }
 
         /// <summary>
         /// Add an item to the undoable list.
@@ -35,9 +35,9 @@ namespace _2048
         /// <param name="property">The property change.</param>
         /// <param name="oldValue">The original value.</param>
         /// <param name="newValue">The updated value.</param>
-        protected void AddUndo(T instance, string property, object oldValue, object newValue)
+        protected void AddUndo(T instance, string property, object oldValue)
         {
-            AddUndo(instance, property, oldValue, newValue, property);
+            AddUndo(instance, property, oldValue, property);
         }
 
         /// <summary>
@@ -48,9 +48,9 @@ namespace _2048
         /// <param name="oldValue">The original value.</param>
         /// <param name="newValue">The updated value.</param>
         /// <param name="name">The name of the undo operation.</param>
-        protected void AddUndo(T instance, string property, object oldValue, object newValue, string name)
+        protected void AddUndo(T instance, string property, object oldValue, string name)
         {
-            Undoable.Add(new UndoableProperty<T>(property, instance, oldValue, newValue, name));
+            Undoables.Add(new UndoableProperty<T>(property, instance, oldValue, name));
         }
 
 

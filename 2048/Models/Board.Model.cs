@@ -1,9 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Media;
 
 namespace _2048
 {
@@ -11,6 +7,7 @@ namespace _2048
     {
         #region Private members
 
+        private const int undoLimit = 5;
         private const int defaultBoardSize = 4;
         private bool tilesMoved = false;
 
@@ -20,7 +17,6 @@ namespace _2048
         public int BoardSize { get; }
         public int CurretScore { get; private set; }
         public TileModel[][] Tiles { get; set; }
-        public bool IsLeftUndoMoves { get; set; }
 
         #endregion
         #region Constructors
@@ -29,9 +25,11 @@ namespace _2048
 
         public BoardModel(int boardSize)
         {
+            UndoManager.UndoLimit = undoLimit;
             this.BoardSize = boardSize;
             setupBoard();
             generateTiles(2);
+            UndoManager.ClearAll();
         }
 
         #endregion
@@ -39,10 +37,10 @@ namespace _2048
 
         public void moveTiles(string direction)
         {
+            UndoManager.splitUndo();
             if (moveTilesByDirection(direction))
             {
                 generateTile();
-                //AddUndo(this, "Tiles", cloned, Tiles);
             }
         }
 
@@ -253,13 +251,5 @@ namespace _2048
         #endregion
 
         #endregion
-
-
-
-
-
-
-
-
     }
 }

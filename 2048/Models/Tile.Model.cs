@@ -6,22 +6,25 @@ using System.Windows.Media;
 
 namespace _2048
 {
-    public class TileModel: ObservableObject
+    public class TileModel: Undoable<TileModel>
     {
         #region Private members
 
-        private int _title_level;
+        private int _titleLevel;
 
         #endregion
         #region Public properties
 
         public int TileLevel {
-            get { return _title_level; }
+            get { return _titleLevel; }
             set
             {
-                if(value >= 0 && value <= 17)
-                _title_level = value;
-                setupTile(value);
+                if (value >= 0 && value <= 17)
+                {
+                    AddUndo(this, "TileLevel", _titleLevel);
+                    _titleLevel = value;
+                    setupTile(value);
+                }
             }
         }
         public bool isTileBlank { get { return TileLevel == 0 ? true : false; } }
@@ -34,7 +37,7 @@ namespace _2048
 
         public TileModel(int number = 0)
         {
-            _title_level = number;
+            _titleLevel = number;
             setupTile(number);
         }
 
@@ -163,6 +166,7 @@ namespace _2048
         }
 
         #endregion
+
 
     }
 }

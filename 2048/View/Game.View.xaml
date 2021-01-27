@@ -60,7 +60,7 @@
                                 <Trigger Property="IsMouseOver" Value="True">
                                     <Setter Property="Background" Value="{StaticResource StainedRed}" />
                                 </Trigger>
-                                <DataTrigger Binding="{Binding GameBoard.IsLeftUndoMoves}" Value="False">
+                                <DataTrigger Binding="{Binding GameBoardVM.IsLeftUndoMoves}" Value="False">
                                     <Setter Property="Background" Value="{StaticResource StainedStainedRed}" />
                                 </DataTrigger>
                             </Style.Triggers>
