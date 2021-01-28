@@ -15,16 +15,16 @@ namespace _2048
         #endregion
         #region Public properties
 
-        public int TileLevel {
+        public int TileLevel
+        {
             get { return _titleLevel; }
             set
             {
-                if (value >= 0 && value <= 17)
-                {
-                    AddUndo(this, "TileLevel", _titleLevel);
-                    _titleLevel = value;
-                    setupTile(value);
-                }
+                if (value < 0 || value > 17)
+                    return;
+                AddUndo(this, "TileLevel", _titleLevel);
+                _titleLevel = value;
+                setupTile(value);
             }
         }
         public bool isTileBlank { get { return TileLevel == 0 ? true : false; } }
@@ -46,20 +46,18 @@ namespace _2048
 
         public void mergeTiles(TileModel tileToMerge)
         {
-            if (this.TileLevel == tileToMerge.TileLevel)
-            {
-                this.TileLevel++;
-                tileToMerge.TileLevel = 0;
-            }
+            if (this.TileLevel != tileToMerge.TileLevel)
+                return;
+            this.TileLevel++;
+            tileToMerge.TileLevel = 0;
         }
 
         public void moveHere(TileModel tileToMove)
         {
-            if (this.TileLevel == 0 && tileToMove.TileLevel != 0)
-            {
-                this.TileLevel = tileToMove.TileLevel;
-                tileToMove.TileLevel = 0;
-            }
+            if (this.TileLevel != 0 || tileToMove.TileLevel == 0)
+                return;
+            this.TileLevel = tileToMove.TileLevel;
+            tileToMove.TileLevel = 0;
         }
 
         #endregion

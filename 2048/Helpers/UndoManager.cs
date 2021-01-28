@@ -61,12 +61,12 @@ namespace _2048
         {
             if (instance == null)
                 throw new ArgumentNullException("instance");
-            if (!undoInProgress)
-            {
-                UndoList.Add(instance);
-                if (MovesCounts.Count == 0) MovesCounts.Add(0);
-                MovesCounts[MovesCounts.Count - 1]++;
-            }
+            if (undoInProgress)
+                return;
+            UndoList.Add(instance);
+            if (MovesCounts.Count == 0)
+                MovesCounts.Add(0);
+            MovesCounts[MovesCounts.Count - 1]++;
         }
         public static void ClearAll()
         {
@@ -100,13 +100,13 @@ namespace _2048
 
         private static void trimUndos()
         {
-            if(UndoLimit != null)
-            if (MovesCounts.Count > UndoLimit.Value)
-                {
-                    for (int i = 0; i < MovesCounts[0]; i++)
-                        UndoList.RemoveAt(0);
-                    MovesCounts.RemoveAt(0);
-                }
+            if (UndoLimit == null)
+                return;
+            if (MovesCounts.Count <= UndoLimit.Value)
+                return;
+            for (int i = 0; i < MovesCounts[0]; i++)
+                UndoList.RemoveAt(0);
+            MovesCounts.RemoveAt(0);
         }
 
         #endregion

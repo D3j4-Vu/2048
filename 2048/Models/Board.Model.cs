@@ -240,11 +240,10 @@ namespace _2048
             {
                 rndIdx1 = rnd.Next(0, 4);
                 rndIdx2 = rnd.Next(0, 4);
-                if (Tiles[rndIdx1][rndIdx2].TileLevel == 0)
-                {
-                    Tiles[rndIdx1][rndIdx2].TileLevel = new_levels[rnd.Next(0, 4)];
-                    isGenerated = true;
-                }
+                if (Tiles[rndIdx1][rndIdx2].TileLevel != 0)
+                    continue;
+                Tiles[rndIdx1][rndIdx2].TileLevel = new_levels[rnd.Next(0, 4)];
+                isGenerated = true;
             }
         }
 
