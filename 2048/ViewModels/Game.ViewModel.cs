@@ -14,7 +14,6 @@ namespace _2048
 
         public GameView View { get; set; }
         public GameBoardViewModel GameBoardVM { get; set; }
-        public string Score { get; set; }
         public string BestScore { get; set; }
         #endregion
         #region Commands
@@ -24,14 +23,12 @@ namespace _2048
         public ICommand ResetGame { get; set; }
         public ICommand UndoMove { get; set; }
 
-
         #endregion
         #region Constructors
 
         public GameViewModel(AppMainViewModel main_page)
         {
             this.main_page = main_page;
-            Score = "0";
             BestScore = "0";
 
             GameBoardVM = new GameBoardViewModel();
@@ -42,7 +39,6 @@ namespace _2048
         }
 
         #endregion
-
         #region Private methods
 
         private void setupCommands()

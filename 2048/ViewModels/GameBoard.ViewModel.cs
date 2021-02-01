@@ -10,6 +10,7 @@ namespace _2048
         public bool IsLeftUndoMoves { get { return UndoManager.isLeftUndos; } }
         public GameBoardView View { get; set; }
         public BoardModel GameBoard { get; set; }
+        public int Score { get { return GameBoard.Score; } }
         public TileModel[][] Tiles
         {
             get { return GameBoard.Tiles; }
@@ -31,18 +32,21 @@ namespace _2048
         {
             GameBoard.moveTiles(direction);
             OnPropertyChanged("IsLeftUndoMoves");
+            OnPropertyChanged("Score");
         }
 
         public void undoSwipe()
         {
             GameBoard.undo();
             OnPropertyChanged("IsLeftUndoMoves");
+            OnPropertyChanged("Score");
         }
 
         public void resetBoard()
         {
             GameBoard.reset();
             OnPropertyChanged("IsLeftUndoMoves");
+            OnPropertyChanged("Score");
         }
 
         #endregion

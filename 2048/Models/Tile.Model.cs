@@ -30,7 +30,7 @@ namespace _2048
         public bool isTileBlank { get { return TileLevel == 0 ? true : false; } }
         public SolidColorBrush BackgroundColor { get; set; }
         public SolidColorBrush FontColor { get; set; }
-        public string Text { get; set; }
+        public int? Text { get; set; }
 
         #endregion
         #region Constructors
@@ -70,95 +70,95 @@ namespace _2048
                 case 0:
                     BackgroundColor = (SolidColorBrush)Application.Current.TryFindResource("Grey");
                     FontColor = (SolidColorBrush)Application.Current.TryFindResource("WarmGrey");
-                    Text = "";
+                    Text = null;
                     break;
                 case 1:
                     BackgroundColor = (SolidColorBrush)Application.Current.TryFindResource("1");
                     FontColor = (SolidColorBrush)Application.Current.TryFindResource("WarmGrey");
-                    Text = "2";
+                    Text = 2;
                     break;
                 case 2:
                     BackgroundColor = (SolidColorBrush)Application.Current.TryFindResource("2");
                     FontColor = (SolidColorBrush)Application.Current.TryFindResource("WarmGrey");
-                    Text = "4";
+                    Text = 4;
                     break;
                 case 3:
                     BackgroundColor = (SolidColorBrush)Application.Current.TryFindResource("3");
                     FontColor = (SolidColorBrush)Application.Current.TryFindResource("LightGrey");
-                    Text = "8";
+                    Text = 8;
                     break;
                 case 4:
                     BackgroundColor = (SolidColorBrush)Application.Current.TryFindResource("4");
                     FontColor = (SolidColorBrush)Application.Current.TryFindResource("LightGrey");
-                    Text = "16";
+                    Text = 16;
                     break;
                 case 5:
                     BackgroundColor = (SolidColorBrush)Application.Current.TryFindResource("5");
                     FontColor = (SolidColorBrush)Application.Current.TryFindResource("LightGrey");
-                    Text = "32";
+                    Text = 32;
                     break;
                 case 6:
                     BackgroundColor = (SolidColorBrush)Application.Current.TryFindResource("6");
                     FontColor = (SolidColorBrush)Application.Current.TryFindResource("LightGrey");
-                    Text = "64";
+                    Text = 64;
                     break;
                 case 7:
                     BackgroundColor = (SolidColorBrush)Application.Current.TryFindResource("7");
                     FontColor = (SolidColorBrush)Application.Current.TryFindResource("LightGrey");
-                    Text = "128";
+                    Text = 128;
                     break;
                 case 8:
                     BackgroundColor = (SolidColorBrush)Application.Current.TryFindResource("8");
                     FontColor = (SolidColorBrush)Application.Current.TryFindResource("LightGrey");
-                    Text = "256";
+                    Text = 256;
                     break;
                 case 9:
                     BackgroundColor = (SolidColorBrush)Application.Current.TryFindResource("9");
                     FontColor = (SolidColorBrush)Application.Current.TryFindResource("LightGrey");
-                    Text = "512";
+                    Text = 512;
                     break;
                 case 10:
                     BackgroundColor = (SolidColorBrush)Application.Current.TryFindResource("10");
                     FontColor = (SolidColorBrush)Application.Current.TryFindResource("LightGrey");
-                    Text = "1024";
+                    Text = 1024;
                     break;
                 case 11:
                     BackgroundColor = (SolidColorBrush)Application.Current.TryFindResource("11");
                     FontColor = (SolidColorBrush)Application.Current.TryFindResource("LightGrey");
-                    Text = "2048";
+                    Text = 2048;
                     break;
                 case 12:
                     BackgroundColor = (SolidColorBrush)Application.Current.TryFindResource("12");
                     FontColor = (SolidColorBrush)Application.Current.TryFindResource("LightGrey");
-                    Text = "4096";
+                    Text = 4096;
                     break;
                 case 13:
                     BackgroundColor = (SolidColorBrush)Application.Current.TryFindResource("13");
                     FontColor = (SolidColorBrush)Application.Current.TryFindResource("LightGrey");
-                    Text = "8192";
+                    Text = 8192;
                     break;
                 case 14:
                     BackgroundColor = (SolidColorBrush)Application.Current.TryFindResource("14");
                     FontColor = (SolidColorBrush)Application.Current.TryFindResource("LightGrey");
-                    Text = "16384";
+                    Text = 16384;
                     break;
                 case 15:
                     BackgroundColor = (SolidColorBrush)Application.Current.TryFindResource("15");
                     FontColor = (SolidColorBrush)Application.Current.TryFindResource("LightGrey");
-                    Text = "32768";
+                    Text = 32768;
                     break;
                 case 16:
                     BackgroundColor = (SolidColorBrush)Application.Current.TryFindResource("16");
                     FontColor = (SolidColorBrush)Application.Current.TryFindResource("LightGrey");
-                    Text = "65536";
+                    Text = 65536;
                     break;
                 case 17:
                     BackgroundColor = (SolidColorBrush)Application.Current.TryFindResource("17");
                     FontColor = (SolidColorBrush)Application.Current.TryFindResource("LightGrey");
-                    Text = "131072";
+                    Text = 131072;
                     break;
                 default:
-                        Text = "Err";
+                    throw new Exception("Bad tile setup input.");
                     break;
             }
         }

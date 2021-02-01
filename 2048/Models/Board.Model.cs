@@ -4,17 +4,27 @@ using System.Linq;
 
 namespace _2048
 {
-    public class BoardModel: ObservableObject
+    public class BoardModel : Undoable<BoardModel>
     {
         #region Private members
         private const int undoLimit = 5;
         private const int defaultBoardSize = 4;
+        private int _score;
         private bool tilesMoved = false;
         #endregion
         #region Public properties
         public int BoardSize { get; }
         public int CurretScore { get; private set; }
         public TileModel[][] Tiles { get; set; }
+        public int Score 
+        { 
+            get { return _score; } 
+            set 
+            {
+                AddUndo(this, "Score", _score);
+                _score = value;
+            }
+        }
         #endregion
         #region Constructors
         public BoardModel() : this(defaultBoardSize) { }
@@ -22,6 +32,7 @@ namespace _2048
         {
             UndoManager.UndoLimit = undoLimit;
             this.BoardSize = boardSize;
+            this.Score = 0;
             setupBoard();
             generateTiles(2);
             UndoManager.ClearAll();
@@ -60,6 +71,7 @@ namespace _2048
             resetScore();
             deleteUndos();
             generateTiles(2);
+            UndoManager.ClearAll();
         }
         public void undo()
         {
@@ -73,7 +85,10 @@ namespace _2048
                 for (int j = 0; j < 4; j++)
                     Tiles[i][j].TileLevel = 0;
         }
-        private void resetScore(){ }
+        private void resetScore() 
+        { 
+            Score = 0;
+        }
         private void deleteUndos()
         {
             UndoManager.ClearAll();
@@ -112,6 +127,7 @@ namespace _2048
                         if (Tiles[i][j].TileLevel == Tiles[i][j - 1].TileLevel)
                         {
                             Tiles[i][j - 1].mergeTiles(Tiles[i][j]);
+                            Score += Tiles[i][j - 1].Text.Value;
                             tilesMoved = true;
                             j--;
                             isMergeOn = false;
@@ -124,7 +140,7 @@ namespace _2048
         {
             bool isMergeOn = true;
             for (int i = 0; i < BoardSize; i++)
-                for (int j = BoardSize-1; j >= 0; j--)
+                for (int j = BoardSize - 1; j >= 0; j--)
                 {
                     if (Tiles[i][j].isTileBlank)
                         for (int k = 1; k < BoardSize; k++)
@@ -138,6 +154,7 @@ namespace _2048
                         if (Tiles[i][j].TileLevel == Tiles[i][j + 1].TileLevel)
                         {
                             Tiles[i][j + 1].mergeTiles(Tiles[i][j]);
+                            Score += Tiles[i][j + 1].Text.Value;
                             tilesMoved = true;
                             j++;
                             isMergeOn = false;
@@ -163,6 +180,7 @@ namespace _2048
                         if (Tiles[i][j].TileLevel == Tiles[i - 1][j].TileLevel)
                         {
                             Tiles[i - 1][j].mergeTiles(Tiles[i][j]);
+                            Score += Tiles[i - 1][j].Text.Value;
                             tilesMoved = true;
                             i--;
                             isMergeOn = false;
@@ -175,7 +193,7 @@ namespace _2048
         {
             bool isMergeOn = true;
             for (int j = 0; j < 4; j++)
-                for (int i = BoardSize-1; i >= 0; i--)
+                for (int i = BoardSize - 1; i >= 0; i--)
                 {
                     if (Tiles[i][j].isTileBlank)
                         for (int k = 1; k < BoardSize; k++)
@@ -189,6 +207,7 @@ namespace _2048
                         if (Tiles[i][j].TileLevel == Tiles[i + 1][j].TileLevel)
                         {
                             Tiles[i + 1][j].mergeTiles(Tiles[i][j]);
+                            Score += Tiles[i + 1][j].Text.Value;
                             tilesMoved = true;
                             i++;
                             isMergeOn = false;
