@@ -1,28 +1,23 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace _2048
 {
     public class BoardModel: ObservableObject
     {
         #region Private members
-
         private const int undoLimit = 5;
         private const int defaultBoardSize = 4;
         private bool tilesMoved = false;
-
         #endregion
         #region Public properties
-
         public int BoardSize { get; }
         public int CurretScore { get; private set; }
         public TileModel[][] Tiles { get; set; }
-
         #endregion
         #region Constructors
-
         public BoardModel() : this(defaultBoardSize) { }
-
         public BoardModel(int boardSize)
         {
             UndoManager.UndoLimit = undoLimit;
@@ -31,70 +26,11 @@ namespace _2048
             generateTiles(2);
             UndoManager.ClearAll();
         }
-
         #endregion
         #region Public methods
-
         public void moveTiles(string direction)
         {
             UndoManager.splitUndo();
-            if (moveTilesByDirection(direction))
-            {
-                generateTile();
-            }
-        }
-
-        public void reset()
-        {
-            clearTilesLevel();
-            resetScore();
-            deleteUndos();
-            generateTiles(2);
-        }
-
-        public void undo()
-        {
-            UndoManager.Undo();
-        }
-
-        #endregion
-        #region Private methods
-
-        private void clearTilesLevel()
-        {
-            for (int i = 0; i < 4; i++)
-                for (int j = 0; j < 4; j++)
-                    Tiles[i][j].TileLevel = 0;
-        }
-
-        private void resetScore(){ }
-
-        private void deleteUndos()
-        {
-            UndoManager.ClearAll();
-        }
-
-        private void generateTiles(int timesToGenerate = 1)
-        {
-            for (int i = 0; i < timesToGenerate; i++)
-                generateTile();
-        }
-
-        private void setupBoard()
-        {
-            Tiles = new TileModel[BoardSize][];
-            for (int i = 0; i < BoardSize; i++)
-            {
-                Tiles[i] = new TileModel[BoardSize];
-                for (int j = 0; j < BoardSize; j++)
-                    Tiles[i][j] = new TileModel(0);
-            }
-        }
-
-        #region Tile moving
-
-        public bool moveTilesByDirection(string direction)
-        {
             tilesMoved = false;
             switch (direction)
             {
@@ -113,9 +49,51 @@ namespace _2048
                 default:
                     break;
             }
-            return tilesMoved;
+            if (tilesMoved)
+            {
+                generateTile();
+            }
         }
-
+        public void reset()
+        {
+            clearTilesLevel();
+            resetScore();
+            deleteUndos();
+            generateTiles(2);
+        }
+        public void undo()
+        {
+            UndoManager.Undo();
+        }
+        #endregion
+        #region Private methods
+        private void clearTilesLevel()
+        {
+            for (int i = 0; i < 4; i++)
+                for (int j = 0; j < 4; j++)
+                    Tiles[i][j].TileLevel = 0;
+        }
+        private void resetScore(){ }
+        private void deleteUndos()
+        {
+            UndoManager.ClearAll();
+        }
+        private void generateTiles(int timesToGenerate = 1)
+        {
+            for (int i = 0; i < timesToGenerate; i++)
+                generateTile();
+        }
+        private void setupBoard()
+        {
+            Tiles = new TileModel[BoardSize][];
+            for (int i = 0; i < BoardSize; i++)
+            {
+                Tiles[i] = new TileModel[BoardSize];
+                for (int j = 0; j < BoardSize; j++)
+                    Tiles[i][j] = new TileModel(0);
+            }
+        }
+        #region Tile moving
         private void moveTilesUp()
         {
             bool isMergeOn = true;
@@ -142,7 +120,6 @@ namespace _2048
                     isMergeOn = true;
                 }
         }
-
         private void moveTilesDown()
         {
             bool isMergeOn = true;
@@ -169,7 +146,6 @@ namespace _2048
                     isMergeOn = true;
                 }
         }
-
         private void moveTilesLeft()
         {
             bool isMergeOn = true;
@@ -195,7 +171,6 @@ namespace _2048
                     isMergeOn = true;
                 }
         }
-
         private void moveTilesRight()
         {
             bool isMergeOn = true;
@@ -222,12 +197,11 @@ namespace _2048
                     isMergeOn = true;
                 }
         }
-
         #endregion
-
         #region Tile generating
 
-        private void generateTile()
+        private void generateTile() //not optimised, this is temporary just for testing... to do: Redesign algorithm.
+
         {
             Random rnd = new Random();
             List<int> new_levels = new List<int> { 1, 1, 1, 2 };
@@ -235,7 +209,6 @@ namespace _2048
             int rndIdx1;
             int rndIdx2;
 
-            //not optimised, this is temporary just for testing... to do: Redesign algorithm.
             while (!isGenerated)
             {
                 rndIdx1 = rnd.Next(0, 4);
@@ -248,7 +221,6 @@ namespace _2048
         }
 
         #endregion
-
         #endregion
     }
 }

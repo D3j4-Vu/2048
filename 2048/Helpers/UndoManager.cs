@@ -78,6 +78,8 @@ namespace _2048
             undoInProgress = true;
             if (MovesCounts.Count != 0)
             {
+                if (MovesCounts.Last().Equals(0))
+                    MovesCounts.RemoveAt(MovesCounts.Count - 1);
                 for (int i = 0; i < MovesCounts[MovesCounts.Count - 1]; i++)
                     if (UndoList.Count > 0)
                     {
@@ -92,6 +94,8 @@ namespace _2048
 
         public static void splitUndo()
         {
+            if (MovesCounts.Count > 0 && MovesCounts.Last().Equals(0))
+                return;
             MovesCounts.Add(0);
             trimUndos();
         }
