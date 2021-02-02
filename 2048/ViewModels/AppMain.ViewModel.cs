@@ -78,6 +78,8 @@ namespace _2048
         public void goToMainPage()
         {
             stopGame();
+            //Bad code!
+            IsGameOnProgres = File.Exists(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\game2048\gameData.txt");
         }
 
         #endregion
