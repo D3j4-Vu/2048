@@ -83,4 +83,15 @@
 
     </Style>
 
+    <Style TargetType="{x:Type Button}" x:Key="BtnRoundedBlue" BasedOn="{StaticResource BtnRounded}">
+        <Setter Property="Background" Value="{StaticResource Blue}"/>
+
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background" Value="{StaticResource StainedBlue}" />
+            </Trigger>
+        </Style.Triggers>
+
+    </Style>
+
 </ResourceDictionary>

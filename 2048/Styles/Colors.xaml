@@ -10,8 +10,8 @@
 
     <SolidColorBrush x:Key="Yellow" Color="#FFFFD325"/>
     <SolidColorBrush x:Key="StainedYellow" Color="#FFE1D548"/>
-    
-    <SolidColorBrush x:Key="Blue" Color="#FF347DFF"/>
+
+    <SolidColorBrush x:Key="Blue" Color="#FF669CFF"/>
     <SolidColorBrush x:Key="StainedBlue" Color="#FF4A6DA9"/>
 
     <SolidColorBrush x:Key="LightGrey" Color="#FFF2EBE5"/>

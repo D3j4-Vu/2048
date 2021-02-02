@@ -1,19 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Windows.Media;
+using System.Xml.Serialization;
 
 namespace _2048
 {
+    [XmlInclude(typeof(MatrixTransform))]
     public class BoardModel : Undoable<BoardModel>
     {
         #region Private members
         private const int defaultBoardSize = 4;
-        private int _score;
         private bool tilesMoved = false;
         #endregion
         #region Public properties
         public int BoardSize { get; }
-        public int CurretScore { get; private set; }
         public TileModel[][] Tiles { get; set; }
         public Score MyScore { get; set; }
         #endregion
@@ -23,7 +24,8 @@ namespace _2048
         {
             this.BoardSize = boardSize;
             this.MyScore = new Score();
-            setupBoard();
+            Tiles = new TileModel[BoardSize][];
+            Tiles.DefaultInit(boardSize);
             generateTiles(2);
         }
         #endregion
@@ -76,16 +78,7 @@ namespace _2048
             for (int i = 0; i < timesToGenerate; i++)
                 generateTile();
         }
-        private void setupBoard()
-        {
-            Tiles = new TileModel[BoardSize][];
-            for (int i = 0; i < BoardSize; i++)
-            {
-                Tiles[i] = new TileModel[BoardSize];
-                for (int j = 0; j < BoardSize; j++)
-                    Tiles[i][j] = new TileModel(0);
-            }
-        }
+
         #region Tile moving
         private void moveTilesUp()
         {

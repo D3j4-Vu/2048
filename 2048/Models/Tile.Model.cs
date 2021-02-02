@@ -35,6 +35,7 @@ namespace _2048
         #endregion
         #region Constructors
 
+        public TileModel() : this(0) { }
         public TileModel(int number = 0)
         {
             _titleLevel = number;

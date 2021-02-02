@@ -6,14 +6,15 @@
              xmlns:local="clr-namespace:_2048"
              mc:Ignorable="d" 
              d:DesignHeight="1920" d:DesignWidth="1080"
-             Loaded="UserControl_Loaded">
+             Loaded="UserControl_Loaded"
+             Background="{StaticResource BackgroundLightBrush}">
     <UserControl.InputBindings>
         <KeyBinding x:Name="KeyUp" Key="Up" Command="{Binding Swipe}" CommandParameter="{Binding ElementName=KeyUp, Path=Key}"/>
         <KeyBinding x:Name="KeyDown" Key="Down" Command="{Binding Swipe}" CommandParameter="{Binding ElementName=KeyDown, Path=Key}"/>
         <KeyBinding x:Name="KeyLeft" Key="Left" Command="{Binding Swipe}" CommandParameter="{Binding ElementName=KeyLeft, Path=Key}"/>
         <KeyBinding x:Name="KeyRight" Key="Right" Command="{Binding Swipe}" CommandParameter="{Binding ElementName=KeyRight, Path=Key}"/>
     </UserControl.InputBindings>
-    <Grid Background="{StaticResource BackgroundLightBrush}">
+    <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
             <RowDefinition Height="4*"/>
@@ -57,9 +58,6 @@
                     <Button.Style>
                         <Style TargetType="{x:Type Button}" BasedOn="{StaticResource BtnRoundedRed}">
                             <Style.Triggers>
-                                <Trigger Property="IsMouseOver" Value="True">
-                                    <Setter Property="Background" Value="{StaticResource StainedRed}" />
-                                </Trigger>
                                 <DataTrigger Binding="{Binding IsLeftUndoMoves}" Value="False">
                                     <Setter Property="Background" Value="{StaticResource StainedStainedRed}" />
                                 </DataTrigger>

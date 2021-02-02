@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
 using System.Windows.Input;
 
 namespace _2048
@@ -16,13 +17,7 @@ namespace _2048
         public GameView View { get; set; }
         public GameBoardViewModel GameBoardVM { get; set; }
         public bool IsLeftUndoMoves { get { return UndoManager.isLeftUndos; } }
-        public int BestScore { 
-            get { return Score.BestValue; } 
-            set
-            {
-                Score.BestValue = value;
-            }
-        }
+        public int BestScore { get { return Score.BestValue; } }
         #endregion
         #region Commands
 
@@ -34,12 +29,14 @@ namespace _2048
         #endregion
         #region Constructors
 
-        public GameViewModel(AppMainViewModel main_page)
+        public GameViewModel(AppMainViewModel main_page, bool loadSave)
         {
             this.main_page = main_page;
 
-            BestScore = 0;
             GameBoardVM = new GameBoardViewModel();
+            if(loadSave) GameBoardVM.loadSavedBoard();
+
+            Score.BestValue = Serializator.deserialize<int>(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\game2048\bestScore.txt");
 
             UndoManager.UndoLimit = undoLimit;
             UndoManager.ClearAll();
@@ -82,6 +79,9 @@ namespace _2048
 
         private void goToMainPage()
         {
+            Serializator.serialize(Score.BestValue, Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\game2048\", "bestScore.txt");
+            GameBoardVM.saveBoard();
+
             GameBoardVM.resetBoard();
             UndoManager.ClearAll();
             main_page.goToMainPage();

@@ -18,6 +18,8 @@
                 <RowDefinition Height="2*"/>
                 <RowDefinition Height="2*"/>
                 <RowDefinition Height="0.5*"/>
+                <RowDefinition Height="0.25*"/>
+                <RowDefinition Height="0.5*"/>
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="0.5*"/>
                 <RowDefinition Height="0.5*"/>
@@ -30,11 +32,24 @@
 
             <TextBlock x:Name="test" Grid.Row="0" Grid.ColumnSpan="3" Text="2048" FontSize="300" Style="{StaticResource WarmTextBlock}"/>
 
-            <Button Grid.Row="2" Grid.Column="1" Style="{StaticResource BtnRoundedYellow}" Content="Start game" Command="{Binding StartGame}"/>
+            <Button Grid.Row="2" Grid.Column="1" Content="Continue" Command="{Binding StartSavedGame}">
+                <Button.Style>
+                    <Style TargetType="{x:Type Button}" BasedOn="{StaticResource BtnRoundedBlue}">
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding IsGameOnProgres}" Value="False">
+                                <Setter Property="Margin" Value="0,0,0,0"/>
+                                <Setter Property="Background" Value="{StaticResource StainedGrey}" />
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+            </Button>
 
-            <Button Grid.Row="4" Grid.Column="1" Style="{StaticResource BtnRoundedRed}" Content="Exit game" Command="{Binding CloseCommand}"/>
+            <Button Grid.Row="4" Grid.Column="1" Style="{StaticResource BtnRoundedYellow}" Content="Start new" Command="{Binding StartGame}"/>
 
-            <ContentControl Grid.ColumnSpan="3" Grid.RowSpan="6" Visibility="{Binding contentVisibility}" Content="{Binding GameVM.View}"/>
+            <Button Grid.Row="6" Grid.Column="1" Style="{StaticResource BtnRoundedRed}" Content="Exit" Command="{Binding CloseCommand}"/>
+
+            <ContentControl Grid.ColumnSpan="3" Grid.RowSpan="8" Visibility="{Binding contentVisibility}" Content="{Binding GameVM.View}"/>
 
         </Grid>
     </Border>

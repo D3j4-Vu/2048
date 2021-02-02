@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
 using System.Windows.Input;
 
 namespace _2048
@@ -32,6 +33,15 @@ namespace _2048
             GameBoard.moveTiles(direction);
         }
 
+        public void saveBoard()
+        {
+            Serializator.serialize(GameBoard, Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\game2048\", "gameData.txt");
+        }
+
+        public void loadSavedBoard()
+        {
+            GameBoard = Serializator.deserialize<BoardModel>(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\game2048\gameData.txt");
+        }
         public void resetBoard()
         {
             GameBoard.reset();

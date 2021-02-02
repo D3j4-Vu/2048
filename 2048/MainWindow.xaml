@@ -12,9 +12,10 @@
         HorizontalContentAlignment="Stretch"
         VerticalContentAlignment="Stretch"
         Background="Transparent"
+        Icon="./Resources/logo.ico"
         >
    
     <Viewbox>
-            <ContentControl Content="{Binding AppMainVM.View}"/>
+        <ContentControl Content="{Binding AppMainVM.View}"/>
     </Viewbox>
 </Window>

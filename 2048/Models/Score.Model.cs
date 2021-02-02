@@ -15,7 +15,7 @@ namespace _2048
         #endregion
         #region Public properties
 
-        public static int BestValue { get; set; } = 0;
+        public static int BestValue { get; set; }
         public int MyValue
         {
             get { return _myValue; }
@@ -24,10 +24,7 @@ namespace _2048
                 AddUndo(this, "MyValue", _myValue);
                 _myValue = value;
                 if (value > BestValue)
-                {
-                    AddUndo(this, "BestValue", BestValue);
                     BestValue = value;
-                }
             }
         }
 
