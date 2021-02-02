@@ -7,7 +7,6 @@ namespace _2048
     public class BoardModel : Undoable<BoardModel>
     {
         #region Private members
-        private const int undoLimit = 5;
         private const int defaultBoardSize = 4;
         private int _score;
         private bool tilesMoved = false;
@@ -16,32 +15,21 @@ namespace _2048
         public int BoardSize { get; }
         public int CurretScore { get; private set; }
         public TileModel[][] Tiles { get; set; }
-        public int Score 
-        { 
-            get { return _score; } 
-            set 
-            {
-                AddUndo(this, "Score", _score);
-                _score = value;
-            }
-        }
+        public Score MyScore { get; set; }
         #endregion
         #region Constructors
         public BoardModel() : this(defaultBoardSize) { }
         public BoardModel(int boardSize)
         {
-            UndoManager.UndoLimit = undoLimit;
             this.BoardSize = boardSize;
-            this.Score = 0;
+            this.MyScore = new Score();
             setupBoard();
             generateTiles(2);
-            UndoManager.ClearAll();
         }
         #endregion
         #region Public methods
         public void moveTiles(string direction)
         {
-            UndoManager.splitUndo();
             tilesMoved = false;
             switch (direction)
             {
@@ -69,13 +57,7 @@ namespace _2048
         {
             clearTilesLevel();
             resetScore();
-            deleteUndos();
             generateTiles(2);
-            UndoManager.ClearAll();
-        }
-        public void undo()
-        {
-            UndoManager.Undo();
         }
         #endregion
         #region Private methods
@@ -86,12 +68,8 @@ namespace _2048
                     Tiles[i][j].TileLevel = 0;
         }
         private void resetScore() 
-        { 
-            Score = 0;
-        }
-        private void deleteUndos()
         {
-            UndoManager.ClearAll();
+            MyScore.MyValue = 0;
         }
         private void generateTiles(int timesToGenerate = 1)
         {
@@ -127,7 +105,7 @@ namespace _2048
                         if (Tiles[i][j].TileLevel == Tiles[i][j - 1].TileLevel)
                         {
                             Tiles[i][j - 1].mergeTiles(Tiles[i][j]);
-                            Score += Tiles[i][j - 1].Text.Value;
+                            MyScore.add(Tiles[i][j - 1].Text.Value);
                             tilesMoved = true;
                             j--;
                             isMergeOn = false;
@@ -154,7 +132,7 @@ namespace _2048
                         if (Tiles[i][j].TileLevel == Tiles[i][j + 1].TileLevel)
                         {
                             Tiles[i][j + 1].mergeTiles(Tiles[i][j]);
-                            Score += Tiles[i][j + 1].Text.Value;
+                            MyScore.add(Tiles[i][j + 1].Text.Value);
                             tilesMoved = true;
                             j++;
                             isMergeOn = false;
@@ -180,7 +158,7 @@ namespace _2048
                         if (Tiles[i][j].TileLevel == Tiles[i - 1][j].TileLevel)
                         {
                             Tiles[i - 1][j].mergeTiles(Tiles[i][j]);
-                            Score += Tiles[i - 1][j].Text.Value;
+                            MyScore.add(Tiles[i - 1][j].Text.Value);
                             tilesMoved = true;
                             i--;
                             isMergeOn = false;
@@ -207,7 +185,7 @@ namespace _2048
                         if (Tiles[i][j].TileLevel == Tiles[i + 1][j].TileLevel)
                         {
                             Tiles[i + 1][j].mergeTiles(Tiles[i][j]);
-                            Score += Tiles[i + 1][j].Text.Value;
+                            MyScore.add(Tiles[i + 1][j].Text.Value);
                             tilesMoved = true;
                             i++;
                             isMergeOn = false;
@@ -217,8 +195,6 @@ namespace _2048
                 }
         }
         #endregion
-        #region Tile generating
-
         private void generateTile() //not optimised, this is temporary just for testing... to do: Redesign algorithm.
 
         {
@@ -238,8 +214,6 @@ namespace _2048
                 isGenerated = true;
             }
         }
-
-        #endregion
         #endregion
     }
 }

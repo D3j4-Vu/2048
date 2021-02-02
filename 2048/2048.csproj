@@ -66,6 +66,7 @@
     <Compile Include="Helpers\UndoableProperty.cs" />
     <Compile Include="Helpers\UndoManager.cs" />
     <Compile Include="Models\Board.Model.cs" />
+    <Compile Include="Models\Score.Model.cs" />
     <Compile Include="ViewModels\AppMain.ViewModel.cs" />
     <Compile Include="Helpers\Undoable.cs" />
     <Compile Include="ViewModels\Base\ViewModelBase.cs" />
