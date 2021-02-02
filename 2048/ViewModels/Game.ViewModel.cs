@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Windows;
 using System.Windows.Input;
 
@@ -35,8 +36,9 @@ namespace _2048
 
             GameBoardVM = new GameBoardViewModel();
             if(loadSave) GameBoardVM.loadSavedBoard();
-
-            Score.BestValue = Serializator.deserialize<int>(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\game2048\bestScore.txt");
+            //bad code!
+            if (File.Exists(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\game2048\bestScore.txt"))
+                Score.BestValue = Serializator.deserialize<int>(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\game2048\bestScore.txt");
 
             UndoManager.UndoLimit = undoLimit;
             UndoManager.ClearAll();
