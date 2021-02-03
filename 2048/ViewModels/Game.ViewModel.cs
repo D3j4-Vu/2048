@@ -79,13 +79,24 @@ namespace _2048
             OnPropertyChanged("BestScore");
         }
 
-        private void goToMainPage()
+        private void saveGame()
+        {
+            saveScore();
+            GameBoardVM.saveBoard();
+        }
+
+        private void saveScore()
         {
             Serializator.serialize(Score.BestValue, Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\game2048\", "bestScore.txt");
-            GameBoardVM.saveBoard();
+        }
+
+        private void goToMainPage()
+        {
+            saveGame();
 
             GameBoardVM.resetBoard();
             UndoManager.ClearAll();
+
             main_page.goToMainPage();
         }
 

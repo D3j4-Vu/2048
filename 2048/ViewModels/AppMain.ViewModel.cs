@@ -39,13 +39,10 @@ namespace _2048
             this.window = window;
 
             GameVM = null;
-            
-            CloseCommand = new RelayCommand((object arg) => window.Close());
-            StartSavedGame = new RelayCommand((object arg) => startSavedGame());
-            StartGame = new RelayCommand((object arg) => startGame());
-
             //Bad code!
             IsGameOnProgres = File.Exists(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\game2048\gameData.txt");
+
+            setupCommands();
             
             View = new AppMainView(this);
         }
@@ -53,18 +50,19 @@ namespace _2048
         #endregion
         #region Private methods
 
-        private void startSavedGame()
+        private void setupCommands() 
         {
-            //Bad code! (need to use relayCMD if can execuce)
-            if (IsGameOnProgres)
-                GameVM = new GameViewModel(this, true);
+            CloseCommand = new RelayCommand((object arg) => window.Close());
+            StartSavedGame = new RelayCommand((object arg) => { GameVM = new GameViewModel(this, true); }, IsGameOnProgres);
+            StartGame = new RelayCommand((object arg) => { GameVM = new GameViewModel(this, false); });
         }
 
-        private void startGame()
+        private void updateMainPage()
         {
-            GameVM = new GameViewModel(this,false);
+            //Bad code!
+            IsGameOnProgres = File.Exists(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\game2048\gameData.txt");
+            StartSavedGame = new RelayCommand((object arg) => { GameVM = new GameViewModel(this, false); }, IsGameOnProgres);
         }
-
 
         private void stopGame()
         {
@@ -78,8 +76,7 @@ namespace _2048
         public void goToMainPage()
         {
             stopGame();
-            //Bad code!
-            IsGameOnProgres = File.Exists(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\game2048\gameData.txt");
+            updateMainPage();
         }
 
         #endregion

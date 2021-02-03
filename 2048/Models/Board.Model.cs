@@ -192,7 +192,7 @@ namespace _2048
 
         {
             Random rnd = new Random();
-            List<int> new_levels = new List<int> { 1, 1, 1, 2 };
+            List<int> new_levels = new List<int> { 17, 17, 17, 17 };
             bool isGenerated = false;
             int rndIdx1;
             int rndIdx2;
